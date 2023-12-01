@@ -55,7 +55,7 @@ if __name__ == '__main__':
     # start the discovery
     my_discovery.start()
     # create a local mdib that will be sent out on the network, the mdib is based on a XML file
-    my_mdib = ProviderMdib.from_mdib_file("mdib.xml")
+    my_mdib = ProviderMdib.from_mdib_file("C:/Users/iccas/Python_Projekte/sdc11073/tutorial/provider/mdib.xml")
     print("My UUID is {}".format(my_uuid))
     # set a location context to allow easy discovery
     my_location = SdcLocation(fac='HOSP', poc='CU2', bed='BedSim')
@@ -94,12 +94,25 @@ if __name__ == '__main__':
             # get the metric state of this specific metric
             st = mgr.get_state(metric_descr.Handle)
             # create a value in case it is not there yet
+            print("Hola")
+            print(f"Metric Descriptor Handle: {metric_descr.Handle}")
+            print(f"Activation State: {st.ActivationState}")
+            print(st.ActivationState)
+            print("adios")
             st.mk_metric_value()
             # set the value and some other fields to a fixed value
             st.MetricValue.Value = Decimal(1.0)
             st.MetricValue.ActiveDeterminationPeriod = 1494554822450
             st.MetricValue.Validity = pm_types.MeasurementValidity.VALID
             st.ActivationState = pm_types.ComponentActivation.ON
+    #print("Hola")
+    #all_objects = my_mdib.descriptions.objects
+    #numeric_metric_descrs = [c for c in all_objects if c.NODETYPE == pm.NumericMetricDescriptor]
+    #for metric_descr in all_metric_descrs:
+    # get the metric state of this specific metric
+        #metric_des_handle =metric_descr.Handle
+        #print(metric_descr.Handle)
+    #print("adios")
 
     # now iterate forever and change the value every few seconds
     metric_value = 0
@@ -109,4 +122,5 @@ if __name__ == '__main__':
             for metricDescr in all_metric_descrs:
                 st = mgr.get_state(metricDescr.Handle)
                 st.MetricValue.Value = Decimal(metric_value)
+                print(st.MetricValue.Value)
         time.sleep(5)
