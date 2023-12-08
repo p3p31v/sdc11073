@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msg:GetMdibResponse
+	xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
+	xmlns:m="http://www.draeger.com/CTEM"
+	xmlns:msg="http://standards.ieee.org/downloads/11073/11073-10207-2017/message"
+	xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant"
+	xmlns:ps="http://schemas.microsoft.com/powershell/2004/04"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant BICEPS_ParticipantModel.xsd
+        		 http://standards.ieee.org/downloads/11073/11073-10207-2017/message BICEPS_MessageModel.xsd
+        		 http://standards.ieee.org/downloads/11073/11073-10207-2017/extension ExtensionPoint.xsd"
+	SequenceId="urn:oid:1">
+	<msg:Mdib SequenceId="urn:oid:1">
+		<pm:MdDescription>
+			<pm:Mds Handle="MdsHandle" SafetyClassification="MedA">
+				<pm:Type Code="1000"> <!-- 1:64.999 -->
+						<pm:ConceptDescription Lang="en-US">SDC-VAS Testsystem</pm:ConceptDescription>
+				</pm:Type>
+
+				<pm:AlertSystem SafetyClassification="MedA" Handle="AlertSystem.mds0.Handle" SelfCheckPeriod="PT5S">
+					<pm:AlertCondition Handle="AlertConditionOne.Handle"
+							xsi:type="pm:AlertConditionDescriptor"
+							SafetyClassification="MedA" Kind="Phy" Priority="Me">
+							<pm:Type Code="262100"> <!-- 3:65.500 -->
+								<pm:ConceptDescription Lang="en-US">Test: Sauerstoffsättigung unter 95%</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Source>MdsHandle</pm:Source>
+					</pm:AlertCondition>
+
+					<pm:AlertCondition Handle="AlertConditionTwo.Handle"
+							xsi:type="pm:AlertConditionDescriptor"
+							SafetyClassification="MedA" Kind="Phy" Priority="Me">
+							<pm:Type Code="262101‬">
+								<pm:ConceptDescription Lang="en-US">Test: Herzschlag  = 0</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Source>MdsHandle</pm:Source>
+					</pm:AlertCondition>
+					
+					<pm:AlertSignal Handle="AlertConditionOneSignal.Handle" ConditionSignaled="ac0.mds0" Manifestation="Aud" Latching="false" SafetyClassification="MedA" />
+					<pm:AlertSignal Handle="AlertConditionTestSignal.Handle" ConditionSignaled="test.mds0" Manifestation="Aud" Latching="false" SafetyClassification="MedA" />
+
+					<!--
+					<pm:AlertCondition Handle="AlertConditionThree.Handle"
+							xsi:type="pm:AlertConditionDescriptor"
+							SafetyClassification="MedA" Kind="Phy" Priority="Me">
+							<pm:Type Code="262102‬"> 
+								<pm:ConceptDescription Lang="en-US">Test:Anschlusskabel locker</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Source>MdsHandle</pm:Source>
+					</pm:AlertCondition>
+					
+					<pm:AlertSignal Handle="AlertConditionThreeSignal.Handle" ConditionSignaled="ac0.mds0" Manifestation="Aud" Latching="false" SafetyClassification="MedA" />
+					
+				</pm:AlertSystem>	
+				
+				<pm:AlertSystem SafetyClassification="MedA" Handle="AlertSystem.mds1.Handle" SelfCheckPeriod="PT5S">
+					<pm:AlertCondition Handle="AlertConditionTwo.Handle"
+							xsi:type="pm:AlertConditionDescriptor"
+							SafetyClassification="MedA" Kind="Phy" Priority="Me">
+							<pm:Type Code="262100"> 
+								<pm:ConceptDescription Lang="en-US">Test: Sauerstoffsättigung unter 95%</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Source>MdsHandle</pm:Source>
+					</pm:AlertCondition>
+					
+					<pm:AlertSignal Handle="AlertConditionOneSignal.Handle" ConditionSignaled="ac0.mds0" Manifestation="Aud" Latching="false" SafetyClassification="MedA" />
+					
+
+					
+					-->
+				</pm:AlertSystem>	
+
+				<pm:Sco Handle="sco.MdsHandle">
+					<pm:Operation Handle="DummyAlert.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="MdsHandle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500000"> <!-- 2:65.207 -->
+							<pm:ConceptDescription Lang="en-US">Dummy Alert</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+				</pm:Sco>
+
+
+
+				<!-- System Context: Zeit-->
+				<pm:SystemContext Handle="SystemContextHandle">
+					<pm:PatientContext Handle="PatientContextHandle" />
+					<pm:LocationContext Handle="LocationContextHandle" />
+				</pm:SystemContext>
+				<pm:Clock Handle="ClockHandle">
+					<pm:TimeProtocol Code="532224">
+						<pm:ConceptDescription Lang="en-us">None
+						</pm:ConceptDescription>
+					</pm:TimeProtocol>
+					<pm:TimeProtocol Code="532225">
+						<pm:ConceptDescription Lang="en-us">NTPv4
+						</pm:ConceptDescription>
+					</pm:TimeProtocol>
+					<pm:TimeProtocol Code="532234">
+						<pm:ConceptDescription Lang="en-us">EBWW
+						</pm:ConceptDescription>
+					</pm:TimeProtocol>
+				</pm:Clock>
+				
+				<!-- Virtuell Device 0 -->
+				<pm:Vmd Handle="vmd0Handle" SafetyClassification="MedA">
+					<pm:Type Code="2000">
+						<pm:ConceptDescription Lang="en-US">Virtuell Device 0</pm:ConceptDescription>
+					</pm:Type>
+
+					<!-- In diesem Kanal werden die erhobenen Metriken definiert -->
+					<!-- In diesem Kanal werden die erhobenen Metriken definiert -->
+					<pm:Channel Handle="ch0.vmd0Handle"
+						SafetyClassification="MedA">
+						<pm:Type Code="130737">
+							<pm:ConceptDescription Lang="en-US">settable metrics</pm:ConceptDescription>
+						</pm:Type>	
+												
+					</pm:Channel>
+				</pm:Vmd>
+			</pm:Mds>
+		</pm:MdDescription>
+	</msg:Mdib>
+</msg:GetMdibResponse>

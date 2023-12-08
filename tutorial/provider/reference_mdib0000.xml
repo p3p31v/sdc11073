@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msg:GetMdibResponse
+	xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
+	xmlns:m="http://www.draeger.com/CTEM"
+	xmlns:msg="http://standards.ieee.org/downloads/11073/11073-10207-2017/message"
+	xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant"
+	xmlns:ps="http://schemas.microsoft.com/powershell/2004/04"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant BICEPS_ParticipantModel.xsd
+        		 http://standards.ieee.org/downloads/11073/11073-10207-2017/message BICEPS_MessageModel.xsd
+        		 http://standards.ieee.org/downloads/11073/11073-10207-2017/extension ExtensionPoint.xsd"
+	SequenceId="urn:oid:1">
+	<msg:Mdib SequenceId="urn:oid:1">
+		<pm:MdDescription>
+			<pm:Mds Handle="mds0" SafetyClassification="MedA">
+				<pm:Type Code="130535"> <!-- 1:64.999 -->
+						<pm:ConceptDescription Lang="en-US">MDS</pm:ConceptDescription>
+				</pm:Type>	
+				<pm:Sco Handle="sco.vmd0_">
+					<pm:Operation xsi:type="pm:SetContextStateOperationDescriptor" Handle="ensemble.mds0_sco0" OperationTarget="EN.mds0">
+						<pm:Type Code="1234567">
+							  <pm:ConceptDescription Lang="en-US">An operation to set the ensemble context of this device</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+				</pm:Sco>
+			<pm:SystemContext Handle="SC.mds0">
+				<pm:PatientContext Handle="PC.mds0" />
+				<pm:LocationContext Handle="LC.mds0" />
+				<pm:EnsembleContext Handle="EN.mds0" />
+			</pm:SystemContext>	
+				<pm:Vmd Handle="vmd0" SafetyClassification="MedA">
+					<pm:Type Code="130536"> <!-- 1:65.000 -->
+						<pm:ConceptDescription Lang="en-US">VMD</pm:ConceptDescription>
+					</pm:Type>	
+					<pm:Sco Handle="sco.vmd0">
+						<pm:Operation Handle="actop.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="mds0"
+						MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
+							<pm:Type Code="130535"> <!-- 3:65.500 -->
+								<pm:ConceptDescription Lang="en-US">Activation operation</pm:ConceptDescription>
+							</pm:Type>
+						</pm:Operation>
+
+					</pm:Sco>
+					<pm:SystemContext Handle="SC.mds0">
+						<pm:PatientContext Handle="PC.mds0" />
+						<pm:LocationContext Handle="LC.mds0" />
+					</pm:SystemContext>
+					<pm:Channel Handle="ch0.vmd0"
+						SafetyClassification="MedA">
+						<pm:Type Code="130637"> <!-- 1:65.101 -->
+							<pm:ConceptDescription Lang="en-US">static not settable metrics</pm:ConceptDescription>
+						</pm:Type>
+						<pm:Metric Handle="numeric_int_effect.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+								<pm:Type Code="130536"> <!-- 3:65.500 -->
+									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
+							<pm:TechnicalRange Upper="255" Lower="0"
+								StepWidth="1" />
+						</pm:Metric>
+							<pm:Metric Handle="numeric_sp_effect.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+								<pm:Type Code="130537"> <!-- 3:65.500 -->
+									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
+							<pm:TechnicalRange Upper="255" Lower="0"
+								StepWidth="1" />
+						</pm:Metric>
+						<pm:Metric Handle="numeric_primary.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+								<pm:Type Code="130538"> <!-- 3:65.500 -->
+									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
+						</pm:Metric>
+
+						<pm:Metric Handle="enumstring_schalter.ch0.vmd0"
+							SafetyClassification="MedA"
+							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
+							MetricAvailability="Intr">
+								<pm:Type Code="130539"> <!-- 3:65.500 -->
+									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
+							<pm:AllowedValue>
+								<pm:Value>ON</pm:Value>
+							</pm:AllowedValue>
+							<pm:AllowedValue>
+								<pm:Value>OFF</pm:Value>
+							</pm:AllowedValue>
+						</pm:Metric>
+						<pm:Metric Handle="enumstring_palette.ch0.vmd0"
+							SafetyClassification="MedA"
+							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
+							MetricAvailability="Intr">
+								<pm:Type Code="130540"> <!-- 3:65.500 -->
+									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
+							<pm:AllowedValue>
+								<pm:Value>0</pm:Value>
+							</pm:AllowedValue>
+							<pm:AllowedValue>
+								<pm:Value>1</pm:Value>
+							</pm:AllowedValue>
+							<pm:AllowedValue>
+								<pm:Value>5</pm:Value>
+							</pm:AllowedValue>
+						</pm:Metric>
+					</pm:Channel>
+				</pm:Vmd>
+			</pm:Mds>
+		</pm:MdDescription>
+	</msg:Mdib>
+</msg:GetMdibResponse>

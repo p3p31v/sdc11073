@@ -4,17 +4,18 @@ import time
 import uuid
 import logging
 from decimal import Decimal
-
 from sdc11073.location import SdcLocation
 from sdc11073.mdib import ProviderMdib
 from sdc11073.provider import SdcProvider
 from sdc11073.provider.components import SdcProviderComponents
 from sdc11073.roles.product import ExtendedProduct
-from sdc11073.wsdiscovery import WSDiscoverySingleAdapter
+from sdc11073.wsdiscovery import WSDiscovery
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types import pm_types
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
 from sdc11073.loghelper import basic_logging_setup
+import requests
+from LED_control import LEDConnectorProviderRole
 
 # example SDC provider (device) that sends out metrics every now and then
 
@@ -50,10 +51,14 @@ def set_local_ensemble_context(mdib: ProviderMdib, ensemble_extension_string: st
 if __name__ == '__main__':
     # start with discovery (MDPWS) that is running on the named adapter "Ethernet" (replace as you need it on your machine, e.g. "enet0" or "Ethernet")
     basic_logging_setup(level=logging.INFO)
+    my_discovery = WSDiscovery(ip_address = "10.249.117.79")
 
-    my_discovery = WSDiscoverySingleAdapter("Loopback Pseudo-Interface 1")
     # start the discovery
     my_discovery.start()
+    #print("a")
+    #apagado = ['10.249.117.79/win&T=0']
+    #my_discovery.publish_service(x_addrs=apagado, epr=None, scopes=None, types=None)
+    #print("b")
     # create a local mdib that will be sent out on the network, the mdib is based on a XML file
     my_mdib = ProviderMdib.from_mdib_file("C:/Users/iccas/Python_Projekte/sdc11073/tutorial/provider/mdib.xml")
     print("My UUID is {}".format(my_uuid))
@@ -71,6 +76,9 @@ if __name__ == '__main__':
                                 serial_number='12345')
     # create a device (provider) class that will do all the SDC magic
     # set role provider that supports Ensemble Contexts.
+
+    #my_product_impl = LEDConnectorProviderRole()._controlLedOperation('off')
+
     specific_components = SdcProviderComponents(role_provider_class=ExtendedProduct)
     sdc_provider = SdcProvider(ws_discovery=my_discovery,
                                epr=my_uuid,
@@ -89,6 +97,22 @@ if __name__ == '__main__':
     # get all metrics from the mdib (as described in the file)
     all_metric_descrs = [c for c in my_mdib.descriptions.objects if c.NODETYPE == pm.NumericMetricDescriptor]
     # now change all the metrics in one transaction
+    metric_set = my_mdib.descriptions.handle.get_one('numeric.ch0.vmd1')
+    while True:
+        with my_mdib.transaction_manager() as mgr:
+            state = mgr.get_state(metric_set.Handle)
+            if not state.MetricValue:
+                state.mk_metric_value()
+            #state.MetricValue.Value = decimal.Decimal(current_value)
+            print("hola")
+            Effect = state.MetricValue.Value
+            print(state.MetricValue.Value)
+            try:
+                LEDConnectorProviderRole()._LED_Effect_Index(Effect_Index=Effect)
+            except:
+                print("No state defined")
+            print("adios")
+        time.sleep(5)
     with my_mdib.transaction_manager() as mgr:
         for metric_descr in all_metric_descrs:
             # get the metric state of this specific metric
@@ -99,12 +123,12 @@ if __name__ == '__main__':
             print(f"Activation State: {st.ActivationState}")
             print(st.ActivationState)
             print("adios")
-            st.mk_metric_value()
+            #st.mk_metric_value()
             # set the value and some other fields to a fixed value
-            st.MetricValue.Value = Decimal(1.0)
-            st.MetricValue.ActiveDeterminationPeriod = 1494554822450
-            st.MetricValue.Validity = pm_types.MeasurementValidity.VALID
-            st.ActivationState = pm_types.ComponentActivation.ON
+            #st.MetricValue.Value = Decimal(1.0)
+           #st.MetricValue.ActiveDeterminationPeriod = 1494554822450
+            #st.MetricValue.Validity = pm_types.MeasurementValidity.VALID
+            #st.ActivationState = pm_types.ComponentActivation.ON
     #print("Hola")
     #all_objects = my_mdib.descriptions.objects
     #numeric_metric_descrs = [c for c in all_objects if c.NODETYPE == pm.NumericMetricDescriptor]
@@ -121,6 +145,7 @@ if __name__ == '__main__':
         with my_mdib.transaction_manager() as mgr:
             for metricDescr in all_metric_descrs:
                 st = mgr.get_state(metricDescr.Handle)
-                st.MetricValue.Value = Decimal(metric_value)
-                print(st.MetricValue.Value)
+                #st.MetricValue.Value = Decimal(metric_value)
+                #url = f"http://10.249.117.79/win&T=0"
+                #response = requests.post(url)
         time.sleep(5)

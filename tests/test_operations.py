@@ -15,7 +15,6 @@ from sdc11073.consumer import SdcConsumer
 from sdc11073.wsdiscovery import WSDiscovery
 from sdc11073.consumer.components import SdcConsumerComponents
 from sdc11073.dispatch import RequestDispatcher
-from tests import utils
 from tests.mockstuff import SomeDevice
 
 ENABLE_COMMLOG = False

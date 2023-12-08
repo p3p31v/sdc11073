@@ -21,6 +21,7 @@ from sdc11073.provider.subscriptionmgr_async import SubscriptionsManagerReferenc
 from sdc11073.xml_types import dpws_types, pm_types
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
+#from LED_control import LEDConnectorProviderRole
 
 if TYPE_CHECKING:
     pass
@@ -73,6 +74,10 @@ def create_reference_provider(
     # generic way to create a device, this what you usually do:
     ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
     ws_discovery.start()
+   # print('hola')
+    #encendido = ['win&T=1']
+   # print(ws_discovery.publish_service(x_addrs=encendido, epr=None, scopes=None, types=None))
+   # print('adios')
     dpws_model = dpws_model or ThisModelType(manufacturer='sdc11073',
                                              manufacturer_url='www.sdc11073.com',
                                              model_name='TestDevice',
@@ -156,6 +161,7 @@ def run_provider():
     set_reference_data(prov, get_location())
 
     metric = prov.mdib.descriptions.handle.get_one('numeric.ch1.vmd0')
+    metric_set = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1')
     alert_condition = prov.mdib.descriptions.handle.get_one('ac0.mds0')
     value_operation = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')
@@ -169,27 +175,24 @@ def run_provider():
             state.mk_metric_value()
 
     print("Running forever, CTRL-C to exit")
-
+    #my_product_impl = LEDConnectorProviderRole()._controlLedOperation(Schalter_state)
     try:
-        current_value = 0
+        current_value = 1
         while True:
             try:
                 with prov.mdib.transaction_manager() as mgr:
-                    state = mgr.get_state(metric.Handle)
+                    state = mgr.get_state(metric_set.Handle)
                     if not state.MetricValue:
                         state.mk_metric_value()
-                    state.MetricValue.Value = decimal.Decimal(current_value)
+                    #state.MetricValue.Value = decimal.Decimal(current_value)
+                    print("hola")
+                    Schalter_state = state.MetricValue.Value
+                    print(state.MetricValue.Value)
+                    print("adios")
+
                     logger.info(f'Set pm:MetricValue/@Value={current_value} of the metric with the handle '
                                 f'"{metric.Handle}".')
-                    current_value += 1
-            except Exception:  # noqa: BLE001
-                logger.error(traceback.format_exc())
-            try:
-                with prov.mdib.transaction_manager() as mgr:
-                    state = mgr.get_state(alert_condition.Handle)
-                    state.Presence = not state.Presence
-                    logger.info(f'Set @Presence={state.Presence} of the alert condition with the handle '
-                                f'"{alert_condition.Handle}".')
+                    #current_value += 1
             except Exception:  # noqa: BLE001
                 logger.error(traceback.format_exc())
             time.sleep(5)

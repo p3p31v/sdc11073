@@ -145,6 +145,22 @@ def run_ref_test():
 
     print('Test step 9: call SetString operation')
     setstring_operations = mdib.descriptions.NODETYPE.get(pm.SetStringOperationDescriptor, [])
+    print("hola")
+    # Assuming setstring_operations[0] is an instance of the SetStringOperationDescriptor class
+    descriptor_str = str(setstring_operations[0])
+
+    # Find the position of "handle=" in the string
+    handle_index = descriptor_str.find("handle=")
+
+    # Extract the substring starting from "handle=" to the next space
+    handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
+
+    # Now, handle_substr should contain the handle value
+    handle_value = handle_substr.strip()
+
+    # Print the extracted handle
+    print("Handle:", handle_value)
+    print("adios")
     setst_handle = 'string.ch0.vmd1_sco_0'
     if len(setstring_operations) == 0:
         print('Test step 9(SetString) failed, no SetString operation found')
@@ -158,7 +174,10 @@ def run_ref_test():
                 fut = client.set_service_client.set_string(s.Handle, 'hoppeldipop')
                 try:
                     res = fut.result(timeout=10)
-                    print(res)
+                    print("guten morgen")
+                    print(dir(res.set_response))
+                    print(res.set_response.value_class_from_node)
+                    print("bis Spater")
                     if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
                         print('set string operation {} did not finish with "Fin":{}'.format(s.Handle, res))
                         results.append('### Test 9(SetString) ### failed')
@@ -188,7 +207,9 @@ def run_ref_test():
                 fut = client.set_service_client.set_numeric_value(s.Handle, Decimal('42'))
                 try:
                     res = fut.result(timeout=10)
-                    print(res)
+                    print("hola")
+                    print(Decimal('42'))
+                    print("adios")
                     if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
                         print('set value operation {} did not finish with "Fin":{}'.format(s.Handle, res))
                     else:
