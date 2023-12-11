@@ -29,7 +29,8 @@ def run_ref_test():
     results = []
     print(f'using adapter address {adapter_ip}')
     print('Test step 1: discover device which endpoint ends with "{}"'.format(search_epr))
-    wsd = WSDiscovery(adapter_ip)
+    #wsd = WSDiscovery(adapter_ip)
+    wsd = WSDiscovery(ip_address = "10.249.117.79")
     wsd.start()
     my_service = None
     while my_service is None:
@@ -107,14 +108,7 @@ def run_ref_test():
         print('onMetricUpdates', metricsbyhandle)
         for k, v in metricsbyhandle.items():
             metric_updates[k].append(v)
-
-    def onAlertUpdates(alertsbyhandle):
-        print('onAlertUpdates', alertsbyhandle)
-        for k, v in alertsbyhandle.items():
-            alert_updates[k].append(v)
-
     observableproperties.bind(mdib, metrics_by_handle=onMetricUpdates)
-    observableproperties.bind(mdib, alert_by_handle=onAlertUpdates)
 
     sleep_timer = 20
     min_updates = sleep_timer // 5 - 1
@@ -132,20 +126,11 @@ def run_ref_test():
             else:
                 print('found {} updates for {}, test step 7 ok'.format(len(v), k))
                 results.append(f'### Test 7 Handle {k} ### passed')
-    if len(alert_updates) == 0:
-        results.append('### Test 8 ### failed')
-    else:
-        for k, v in alert_updates.items():
-            if len(v) < min_updates:
-                print('found only {} updates for {}, test step 8 failed'.format(len(v), k))
-                results.append(f'### Test 8 Handle {k} ### failed')
-            else:
-                print('found {} updates for {}, test step 8 ok'.format(len(v), k))
-                results.append(f'### Test 8 Handle {k} ### passed')
 
     print('Test step 9: call SetString operation')
     setstring_operations = mdib.descriptions.NODETYPE.get(pm.SetStringOperationDescriptor, [])
     print("hola")
+    #extraction of 'enumstring.ch0.vmd1_sco_0' name from setstring_operations
     # Assuming setstring_operations[0] is an instance of the SetStringOperationDescriptor class
     descriptor_str = str(setstring_operations[0])
 
@@ -161,7 +146,7 @@ def run_ref_test():
     # Print the extracted handle
     print("Handle:", handle_value)
     print("adios")
-    setst_handle = 'string.ch0.vmd1_sco_0'
+    setst_handle = 'enumstring.ch0.vmd1_sco_0'
     if len(setstring_operations) == 0:
         print('Test step 9(SetString) failed, no SetString operation found')
         results.append('### Test 9 ### failed')
@@ -171,7 +156,7 @@ def run_ref_test():
                 continue
             print('setString Op ={}'.format(s))
             try:
-                fut = client.set_service_client.set_string(s.Handle, 'hoppeldipop')
+                fut = client.set_service_client.set_string(s.Handle, 'on')
                 try:
                     res = fut.result(timeout=10)
                     print("guten morgen")
@@ -222,35 +207,7 @@ def run_ref_test():
                 print(f'Test 9(SetValue): {ex}')
                 results.append('### Test 9(SetValue) ### failed')
 
-    print('Test step 9: call Activate operation')
-    activate_operations = mdib.descriptions.NODETYPE.get(pm.ActivateOperationDescriptor, [])
-    activate_handle = 'actop.vmd1_sco_0'
-    if len(setstring_operations) == 0:
-        print('Test step 9 failed, no Activate operation found')
-        results.append('### Test 9(Activate) ### failed')
-    else:
-        for s in activate_operations:
-            if s.Handle != activate_handle:
-                continue
-            print('activate Op ={}'.format(s))
-            try:
-                fut = client.set_service_client.activate(s.Handle, 'hoppeldipop')
-                try:
-                    res = fut.result(timeout=10)
-                    print(res)
-                    if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
-                        print('activate operation {} did not finish with "Fin":{}'.format(s.Handle, res))
-                        results.append('### Test 9(Activate) ### failed')
-                    else:
-                        print('activate operation {} ok:{}'.format(s.Handle, res))
-                        results.append('### Test 9(Activate) ### passed')
-                except futures.TimeoutError:
-                    print('timeout error')
-                    results.append('### Test 9(Activate) ### failed')
-            except Exception as ex:
-                print(f'Test 9(Activate): {ex}')
-                results.append('### Test 9(Activate) ### failed')
-
+    
     print('Test step 10: cancel all subscriptions')
     success = client._subscription_mgr.unsubscribe_all()
     if success:

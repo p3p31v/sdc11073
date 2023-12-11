@@ -8,6 +8,7 @@ from sdc11073.xml_types.actions import periodic_actions
 from sdc11073.wsdiscovery import WSDiscovery
 from sdc11073.definitions_sdc import SdcV1Definitions
 from sdc11073.consumer import SdcConsumer
+from sdc11073.certloader import mk_ssl_contexts_from_folder
 from sdc11073.mdib import ConsumerMdib
 from sdc11073 import observableproperties
 from sdc11073.loghelper import basic_logging_setup
@@ -22,7 +23,9 @@ import requests
 # The UUID is created from a base
 baseUUID = uuid.UUID('{cc013678-79f6-403c-998f-3cc0cc050230}')
 device_A_UUID = uuid.uuid5(baseUUID, "12345")
+ca_folder = os.getenv('ref_ca')  # noqa: SIM112
 search_epr = os.getenv('ref_search_epr') or 'abc'
+ssl_passwd = os.getenv('ref_ssl_passwd') or None  # noqa: SIM112
 
 # callback function that will be called upon metric updates from the provider
 def on_metric_update(metrics_by_handle: dict):
@@ -80,7 +83,8 @@ def set_ensemble_context(mdib: ConsumerMdib, sdc_consumer: SdcConsumer) -> None:
 if __name__ == '__main__':
     # start with discovery (MDPWS) that is running on the named adapter "Ethernet" (replace as you need it on your machine, e.g. "enet0" or "Ethernet)
     basic_logging_setup(level=logging.INFO)
-    my_discovery = WSDiscovery(ip_address = "10.249.117.79")
+    #my_discovery = WSDiscovery(ip_address = "10.249.117.79")
+    my_discovery = WSDiscovery("127.0.0.1")
     # start the discovery
     my_discovery.start()
     # we want to search until we found one device with this client
@@ -91,13 +95,23 @@ if __name__ == '__main__':
         services =my_discovery.search_services(types=SdcV1Definitions.MedicalDeviceTypesFilter)
         print('found {} services {}'.format(len(services), ', '.join([s.epr for s in services])))
         for s in services:
-            if not s.epr.endswith(search_epr):
+            if s.epr.endswith(search_epr):
                 print('hola')
                 my_service = s
                 print('found service {}'.format(s.epr))
                 break
     print('Test step 1 successful: device discovered')
-    client = SdcConsumer.from_wsd_service(my_service, ssl_context_container=None, validate=True)
+    if ca_folder:
+        ssl_context_container = mk_ssl_contexts_from_folder(ca_folder,
+                                                                cyphers_file=None,
+                                                                private_key='user_private_key_encrypted.pem',
+                                                                certificate='user_certificate_root_signed.pem',
+                                                                ca_public_key='root_certificate.pem',
+                                                                ssl_passwd=ssl_passwd,
+                                                                )
+    else:
+        ssl_context_container = None
+        client = SdcConsumer.from_wsd_service(my_service, ssl_context_container=ssl_context_container, validate=True)
 
     mdib = ConsumerMdib(client)
 

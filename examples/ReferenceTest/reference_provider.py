@@ -21,7 +21,7 @@ from sdc11073.provider.subscriptionmgr_async import SubscriptionsManagerReferenc
 from sdc11073.xml_types import dpws_types, pm_types
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
-#from LED_control import LEDConnectorProviderRole
+from LED_control import LEDConnectorProviderRole
 
 if TYPE_CHECKING:
     pass
@@ -72,7 +72,8 @@ def create_reference_provider(
         specific_components: SdcProviderComponents | None = None,
         ssl_context_container: sdc11073.certloader.SSLContextContainer | None = None) -> provider.SdcProvider:
     # generic way to create a device, this what you usually do:
-    ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    #ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
     ws_discovery.start()
    # print('hola')
     #encendido = ['win&T=1']
@@ -160,9 +161,9 @@ def run_provider():
     prov = create_reference_provider(ws_discovery=wsd, specific_components=specific_components)
     set_reference_data(prov, get_location())
 
-    metric = prov.mdib.descriptions.handle.get_one('numeric.ch1.vmd0')
+
     metric_set = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1')
-    alert_condition = prov.mdib.descriptions.handle.get_one('ac0.mds0')
+    string_metric_set = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1')
     value_operation = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')
 
@@ -175,23 +176,34 @@ def run_provider():
             state.mk_metric_value()
 
     print("Running forever, CTRL-C to exit")
-    #my_product_impl = LEDConnectorProviderRole()._controlLedOperation(Schalter_state)
+    #LEDConnectorProviderRole()._controlLedOperation(Schalter_state)
+    #LEDConnectorProviderRole()._LED_Effect_Index(Effect_Index=led_effect)
     try:
         current_value = 1
         while True:
             try:
                 with prov.mdib.transaction_manager() as mgr:
+                    state_string = mgr.get_state(string_metric_set.Handle)
                     state = mgr.get_state(metric_set.Handle)
                     if not state.MetricValue:
                         state.mk_metric_value()
+                    if not state_string.MetricValue:
+                        state_string.mk_metric_value()
                     #state.MetricValue.Value = decimal.Decimal(current_value)
                     print("hola")
-                    Schalter_state = state.MetricValue.Value
+                    Schalter_state = state_string.MetricValue.Value
+                    led_effect = state.MetricValue.Value
+                    try:
+                        LEDConnectorProviderRole()._controlLedOperation(Schalter_state)
+                        LEDConnectorProviderRole()._LED_Effect_Index(Effect_Index=led_effect)
+                    except:
+                        print("No value assigned to the metric")
+
                     print(state.MetricValue.Value)
+                    print(state_string.MetricValue.Value)
                     print("adios")
 
-                    logger.info(f'Set pm:MetricValue/@Value={current_value} of the metric with the handle '
-                                f'"{metric.Handle}".')
+
                     #current_value += 1
             except Exception:  # noqa: BLE001
                 logger.error(traceback.format_exc())

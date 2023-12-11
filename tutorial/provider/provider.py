@@ -10,6 +10,7 @@ from sdc11073.provider import SdcProvider
 from sdc11073.provider.components import SdcProviderComponents
 from sdc11073.roles.product import ExtendedProduct
 from sdc11073.wsdiscovery import WSDiscovery
+from sdc11073.wsdiscovery import WSDiscoverySingleAdapter
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types import pm_types
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
@@ -51,7 +52,8 @@ def set_local_ensemble_context(mdib: ProviderMdib, ensemble_extension_string: st
 if __name__ == '__main__':
     # start with discovery (MDPWS) that is running on the named adapter "Ethernet" (replace as you need it on your machine, e.g. "enet0" or "Ethernet")
     basic_logging_setup(level=logging.INFO)
-    my_discovery = WSDiscovery(ip_address = "10.249.117.79")
+    #my_discovery = WSDiscovery(ip_address = "10.249.117.79")
+    my_discovery = WSDiscoverySingleAdapter("Loopback Pseudo-Interface 1")
 
     # start the discovery
     my_discovery.start()
