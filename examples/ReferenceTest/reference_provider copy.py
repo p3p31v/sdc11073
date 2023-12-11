@@ -21,7 +21,7 @@ from sdc11073.provider.subscriptionmgr_async import SubscriptionsManagerReferenc
 from sdc11073.xml_types import dpws_types, pm_types
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
-from LED_control_copy import LEDConnectorProviderRole
+from LED_control import LEDConnectorProviderRole
 
 if TYPE_CHECKING:
     pass
@@ -88,7 +88,7 @@ def create_reference_provider(
     dpws_device = dpws_device or ThisDeviceType(friendly_name='TestDevice',
                                                 firmware_version='Version1',
                                                 serial_number='12345')
-    mdib = ProviderMdib.from_mdib_file(str(mdib_path or pathlib.Path(__file__).parent.joinpath('C:/Users/iccas/Python_Projekte/sdc11073/examples/ReferenceTest/reference_mdib.xml')))
+    mdib = ProviderMdib.from_mdib_file(str(mdib_path or pathlib.Path(__file__).parent.joinpath('C:/Users/iccas/Python_Projekte/sdc11073/examples/ReferenceTest/reference_mdib copy.xml')))
     prov = provider.SdcProvider(
         ws_discovery=ws_discovery,
         this_model=dpws_model,

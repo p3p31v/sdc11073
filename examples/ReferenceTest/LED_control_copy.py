@@ -74,28 +74,7 @@ class LEDConnectorProviderRole():
             print(f"API request failed with status code {response.status_code}: {endpoint}")
 
 
-    def _selectOperation(self, operation, *args):
-        """
-        Select and call the appropriate LED operation method.
-
-        Parameters:
-        - operation (str): The name of the LED operation method to be called.
-        - args: Arguments to be passed to the selected method.
-        """
-
-        # Check if the selected operation method exists in the class
-        if hasattr(self, '_' + operation):
-            # Call the selected operation method
-            getattr(self, '_' + operation)(*args)
-        else:
-            print(f"Unknown operation: {operation}")
-        print(operation)
-
-led_connector = LEDConnectorProviderRole()
-led_connector._selectOperation("controlLedOperation", "off")
-
-#led_connector._selectOperation("primary_colorchange", "#FF0000")
-#led_connector._selectOperation("BrightnessChange", 150)
+    
 
         
 
