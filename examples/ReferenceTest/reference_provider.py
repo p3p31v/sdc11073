@@ -72,8 +72,8 @@ def create_reference_provider(
         specific_components: SdcProviderComponents | None = None,
         ssl_context_container: sdc11073.certloader.SSLContextContainer | None = None) -> provider.SdcProvider:
     # generic way to create a device, this what you usually do:
-    #ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
-    ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
+    ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    #ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
     ws_discovery.start()
    # print('hola')
     #encendido = ['win&T=1']
@@ -147,7 +147,8 @@ def run_provider():
     logger = setup_logging()
 
     adapter = get_network_adapter()
-    wsd = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
+    wsd = wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    #wsd = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
     wsd.start()
 
     if USE_REFERENCE_PARAMETERS:
@@ -163,9 +164,22 @@ def run_provider():
 
 
     metric_set = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1')
+    metric_set_palette = prov.mdib.descriptions.handle.get_one('numeric_palette.ch0.vmd1')
+    metric_set_brightness = prov.mdib.descriptions.handle.get_one('numeric_brightness.ch0.vmd1')
+    metric_set_speed = prov.mdib.descriptions.handle.get_one('numeric_Effect_Speed.ch0.vmd1')
+    metric_set_intensity = prov.mdib.descriptions.handle.get_one('numeric_Effect_Intensity.ch0.vmd1')
+    metric_set_selector = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1')
+
     string_metric_set = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1')
+    string1_metric_set = prov.mdib.descriptions.handle.get_one('string.ch0.vmd1')
+    string2_metric_set = prov.mdib.descriptions.handle.get_one('string_2.ch0.vmd1')
+    string3_metric_set = prov.mdib.descriptions.handle.get_one('string_3.ch0.vmd1')
+
     value_operation = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')
+    #change the handle and write something that identifies the handle metric names
+    print("handle list:")
+    print(prov.mdib.descriptions.handle)
 
     with prov.mdib.transaction_manager() as mgr:
         state = mgr.get_state(value_operation.OperationTarget)

@@ -28,8 +28,8 @@ def run_ref_test():
     results = []
     print(f'using adapter address {adapter_ip}')
     print('Test step 1: discover device which endpoint ends with "{}"'.format(search_epr))
-    #wsd = WSDiscovery(adapter_ip)
-    wsd = WSDiscovery(ip_address = "10.249.117.79")
+    wsd = WSDiscovery(adapter_ip)
+    #wsd = WSDiscovery(ip_address = "10.249.117.79")
     wsd.start()
 
     my_service = None
@@ -133,7 +133,9 @@ def run_ref_test():
         setstring_operations = mdib.descriptions.NODETYPE.get(pm.SetStringOperationDescriptor, [])
         #extraction of 'enumstring.ch0.vmd1_sco_0' name from setstring_operations
         # Assuming setstring_operations[0] is an instance of the SetStringOperationDescriptor class
-        descriptor_str = str(setstring_operations[0])
+
+
+        descriptor_str = str(setstring_operations[2])
 
         # Find the position of "handle=" in the string
         handle_index = descriptor_str.find("handle=")
@@ -145,8 +147,14 @@ def run_ref_test():
         handle_value = handle_substr.strip()
 
         # Print the extracted handle
+        print("headers de las strings")
         print("Handle:", handle_value)
+
+
         setst_handle = 'enumstring.ch0.vmd1_sco_0'
+        setst_handle1="string.ch0.vmd1_sco_0"
+        setst_handle2="string_2.ch0.vmd1_sco_0"
+        setst_handle3="string_3.ch0.vmd1_sco_0"
         
         if len(setstring_operations) == 0:
             print('Test step 9(SetString) failed, no SetString operation found')
