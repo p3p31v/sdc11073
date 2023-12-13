@@ -21,7 +21,7 @@ from sdc11073.provider.subscriptionmgr_async import SubscriptionsManagerReferenc
 from sdc11073.xml_types import dpws_types, pm_types
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
-from LED_control_copy import LEDConnectorProviderRole
+from LED_control import LEDConnectorProviderRole
 
 if TYPE_CHECKING:
     pass
@@ -103,7 +103,7 @@ def create_reference_provider(
     prov.start_all(start_rtsample_loop=False)
     return prov
 
-
+#probably can be deleted
 def set_reference_data(prov: provider.SdcProvider, loc: location.SdcLocation = None):
     loc = loc or get_location()
     prov.set_location(loc, [pm_types.InstanceIdentifier('Validator', extension_string='System')])
@@ -163,7 +163,7 @@ def run_provider():
     set_reference_data(prov, get_location())
 
 
-    metric_set = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1')
+    metric_set = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1')
     metric_set_palette = prov.mdib.descriptions.handle.get_one('numeric_palette.ch0.vmd1')
     metric_set_brightness = prov.mdib.descriptions.handle.get_one('numeric_brightness.ch0.vmd1')
     metric_set_speed = prov.mdib.descriptions.handle.get_one('numeric_Effect_Speed.ch0.vmd1')
@@ -175,11 +175,22 @@ def run_provider():
     string2_metric_set = prov.mdib.descriptions.handle.get_one('string_2.ch0.vmd1')
     string3_metric_set = prov.mdib.descriptions.handle.get_one('string_3.ch0.vmd1')
 
-    value_operation = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1_sco_0')
+    value_operation = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')
     #change the handle and write something that identifies the handle metric names
+
+
     print("handle list:")
-    print(prov.mdib.descriptions.handle)
+    numeric_metric_list = []
+    for i in prov.mdib.descriptions.handle:
+        if i.startswith('numeric') and i.endswith('vmd1') or i.startswith('string') and i.endswith('vmd1') or i.startswith('enumstring') and i.endswith('vmd1'):
+            print(i)
+            numeric_metric_list.append(i)
+    #output
+    #enumstring.ch0.vmd1
+    #string.ch0.vmd1
+    #string_2.ch0.vmd1
+    #string_3.ch0.vmd1
 
     with prov.mdib.transaction_manager() as mgr:
         state = mgr.get_state(value_operation.OperationTarget)
@@ -189,6 +200,7 @@ def run_provider():
         if not state.MetricValue:
             state.mk_metric_value()
 
+
     print("Running forever, CTRL-C to exit")
     #LEDConnectorProviderRole()._controlLedOperation(Schalter_state)
     #LEDConnectorProviderRole()._LED_Effect_Index(Effect_Index=led_effect)
@@ -197,19 +209,29 @@ def run_provider():
         while True:
             try:
                 with prov.mdib.transaction_manager() as mgr:
-                    state_string = mgr.get_state(string_metric_set.Handle)
+                    #aqui puedo definir metric_state con numeric_metric_list y asociarlo a la string_metric_set o numeric_metric_set que quiera
                     state = mgr.get_state(metric_set.Handle)
+
+                    state_string = mgr.get_state(string_metric_set.Handle)
                     if not state.MetricValue:
                         state.mk_metric_value()
                     if not state_string.MetricValue:
                         state_string.mk_metric_value()
                     #state.MetricValue.Value = decimal.Decimal(current_value)
                     print("hola")
+                    Control_metric = state.MetricValue.Value
                     Schalter_state = state_string.MetricValue.Value
-                    led_effect = state.MetricValue.Value
+                    #we get the value of the handle for the option to get the state of user desired metric
+                    state_general=mgr.get_state(prov.mdib.descriptions.handle.get_one(numeric_metric_list[int(Control_metric)]).Handle)
+                    if not state_general.MetricValue:
+                        state_general.mk_metric_value()
+
+                    print("No control value assigned")
+                    input_metric = state_general.MetricValue.Value
+
                     try:
-                        LEDConnectorProviderRole()._controlLedOperation(Schalter_state)
-                        LEDConnectorProviderRole()._LED_Effect_Index(Effect_Index=led_effect)
+                        led_connector = LEDConnectorProviderRole()
+                        led_connector._selectOperation(input_metric, Schalter_state)
                     except:
                         print("No value assigned to the metric")
 

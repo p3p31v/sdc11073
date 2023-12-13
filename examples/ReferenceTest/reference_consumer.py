@@ -16,6 +16,10 @@ from sdc11073.xml_types.msg_types import InvocationState
 
 ConsumerMdibMethods.DETERMINATIONTIME_WARN_LIMIT = 2.0
 
+# It retrieves the value of the environment variable ref_ip using os.getenv().
+# If ref_ip is not set (i.e., None), it assigns the default value '127.0.0.1' to the variable adapter_ip.
+
+
 adapter_ip = os.getenv('ref_ip') or '127.0.0.1'  # noqa: SIM112
 ca_folder = os.getenv('ref_ca')  # noqa: SIM112
 ssl_passwd = os.getenv('ref_ssl_passwd') or None  # noqa: SIM112
@@ -80,8 +84,8 @@ def run_ref_test():
         results.append('### Test 4 ### failed')
         return results
     while True:
-        schalter_value = input("write the state of the switch")
-        Palette_index = input("write the palette index")
+        Function_selector = input("write the number for the function you want to select")
+        schalter_value = input("write the value for the function you want to select")
         pm = mdib.data_model.pm_names
 
         print('Test step 5: check that at least one patient context exists')
@@ -134,11 +138,11 @@ def run_ref_test():
         #extraction of 'enumstring.ch0.vmd1_sco_0' name from setstring_operations
         # Assuming setstring_operations[0] is an instance of the SetStringOperationDescriptor class
 
-
-        descriptor_str = str(setstring_operations[2])
+        # Aqui da error porque no llega a haber tantas operaciones de strings
+        descriptor_str = str(setstring_operations[int(Function_selector)])
 
         # Find the position of "handle=" in the string
-        handle_index = descriptor_str.find("handle=")
+        handle_index = descriptor_str.find("handle=")   
 
         # Extract the substring starting from "handle=" to the next space
         handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
@@ -150,7 +154,7 @@ def run_ref_test():
         print("headers de las strings")
         print("Handle:", handle_value)
 
-
+        #I would say that setst_handle is the handle of the string that the user will choose, and schalter_value the metric value
         setst_handle = 'enumstring.ch0.vmd1_sco_0'
         setst_handle1="string.ch0.vmd1_sco_0"
         setst_handle2="string_2.ch0.vmd1_sco_0"
@@ -161,7 +165,7 @@ def run_ref_test():
             results.append('### Test 9 ### failed')
         else:
             for s in setstring_operations:
-                if s.Handle != setst_handle:
+                if s.Handle != handle_value:
                     continue
                 print('setString Op ={}'.format(s))
                 try:
@@ -188,21 +192,42 @@ def run_ref_test():
         print('Test step 9: call SetValue operation')
         setvalue_operations = mdib.descriptions.NODETYPE.get(pm.SetValueOperationDescriptor, [])
         #    print('setvalue_operations', setvalue_operations)
-        setval_handle = 'numeric.ch0.vmd1_sco_0'
+                # Aqui da error porque no llega a haber tantas operaciones de strings
+        descriptor_str = str(setvalue_operations[int(Function_selector)])
+
+        # Find the position of "handle=" in the string
+        handle_index = descriptor_str.find("handle=")   
+
+        # Extract the substring starting from "handle=" to the next space
+        handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
+
+        # Now, handle_substr should contain the handle value
+        handle_value = handle_substr.strip()
+
+        # Print the extracted handle
+        print("headers de las strings")
+        print("Handle:", handle_value)
+
+
+        setval_handle_selector = 'numeric_Function_Selector.ch0.vmd1_sco_0'
+
+        setval_handle = "numeric.ch0.vmd1_sco_0"
 
         if len(setvalue_operations) == 0:
             print('Test step 9 failed, no SetValue operation found')
             results.append('### Test 9(SetValue) ### failed')
         else:
             for s in setvalue_operations:
-                if s.Handle != setval_handle:
+                if s.Handle != handle_value:
                     continue
                 print('setNumericValue Op ={}'.format(s))
                 try:
                     
-                    fut = client.set_service_client.set_numeric_value(s.Handle, Decimal(Palette_index))
+                    fut = client.set_service_client.set_numeric_value(s.Handle, Decimal(int(schalter_value)))
+                    fut_selector = client.set_service_client.set_numeric_value(setval_handle_selector, Decimal(int(Function_selector)))
                     try:
                         res = fut.result(timeout=10)
+                        res_selector = fut_selector.result(timeout=10)
                         print("hola")
                         print(Decimal('42'))
                         print("adios")
@@ -228,7 +253,7 @@ def run_ref_test():
         results.append('### Test 10(unsubscribe) ### failed')
     time.sleep(2)
     return results
-
+# this load a configuration file for some reason
 if __name__ == '__main__':
     xtra_log_config = os.getenv('ref_xtra_log_cnf')  # noqa: SIM112
 

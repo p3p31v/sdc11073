@@ -88,6 +88,15 @@
 								<pm:ConceptDescription Lang="en-US">set numeric metric value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
+						<pm:Operation
+							xsi:type="pm:SetValueOperationDescriptor"
+							Handle="numeric_Function_Selector.ch0.vmd1_sco_0"
+							OperationTarget="numeric_Function_Selector.ch0.vmd1" SafetyClassification="MedA"
+							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
+							<pm:Type Code="196301"> <!-- 2:65.204 -->
+								<pm:ConceptDescription Lang="en-US">set numeric metric value</pm:ConceptDescription>
+							</pm:Type>
+						</pm:Operation>
 						
 
 						<pm:Operation
@@ -196,18 +205,6 @@
 							<pm:TechnicalRange Upper="255" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
-						<pm:Metric Handle="numeric_Function_Selector.ch0.vmd1"
-							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
-							<pm:Type Code="196300"> <!-- 2:65.202 -->
-								<pm:ConceptDescription Lang="en-US">dummy settable numeric metric</pm:ConceptDescription>
-							</pm:Type>
-							<pm:Unit Code="262301"> <!-- MDC_DIM_DIMLESS = 4:512 -->
-								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
-							</pm:Unit>
-							<pm:TechnicalRange Upper="7" Lower="0"
-								StepWidth="1" />
-						</pm:Metric>
 						<pm:Metric Handle="enumstring.ch0.vmd1"
 							SafetyClassification="MedA"
 							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
@@ -261,6 +258,18 @@
 							<pm:Unit Code="262673"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
 							</pm:Unit>
+						</pm:Metric>
+						<pm:Metric Handle="numeric_Function_Selector.ch0.vmd1"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="196300"> <!-- 2:65.202 -->
+								<pm:ConceptDescription Lang="en-US">dummy settable numeric metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262301"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="7" Lower="0"
+								StepWidth="1" />
 						</pm:Metric>
 					</pm:Channel>
 				</pm:Vmd>
