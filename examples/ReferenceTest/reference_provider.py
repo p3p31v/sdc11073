@@ -231,12 +231,12 @@ def run_provider():
 
                     try:
                         led_connector = LEDConnectorProviderRole()
-                        led_connector._selectOperation(input_metric, Schalter_state)
+                        led_connector._selectOperation(Control_metric, input_metric)
                     except:
                         print("No value assigned to the metric")
 
                     print(state.MetricValue.Value)
-                    print(state_string.MetricValue.Value)
+                    print(state_general.MetricValue.Value)
                     print("adios")
 
 
