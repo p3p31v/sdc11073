@@ -21,7 +21,7 @@ from sdc11073.provider.subscriptionmgr_async import SubscriptionsManagerReferenc
 from sdc11073.xml_types import dpws_types, pm_types
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
-from LED_control import LEDConnectorProviderRole
+from LED_control_copy import LEDConnectorProviderRole
 
 if TYPE_CHECKING:
     pass
@@ -212,15 +212,13 @@ def run_provider():
                     #aqui puedo definir metric_state con numeric_metric_list y asociarlo a la string_metric_set o numeric_metric_set que quiera
                     state = mgr.get_state(metric_set.Handle)
 
-                    state_string = mgr.get_state(string_metric_set.Handle)
+                   
                     if not state.MetricValue:
                         state.mk_metric_value()
-                    if not state_string.MetricValue:
-                        state_string.mk_metric_value()
+
                     #state.MetricValue.Value = decimal.Decimal(current_value)
                     print("hola")
                     Control_metric = state.MetricValue.Value
-                    Schalter_state = state_string.MetricValue.Value
                     #we get the value of the handle for the option to get the state of user desired metric
                     state_general=mgr.get_state(prov.mdib.descriptions.handle.get_one(numeric_metric_list[int(Control_metric)]).Handle)
                     if not state_general.MetricValue:

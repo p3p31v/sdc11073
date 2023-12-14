@@ -132,117 +132,127 @@ def run_ref_test():
                 else:
                     print('found {} updates for {}, test step 7 ok'.format(len(v), k))
                     results.append(f'### Test 7 Handle {k} ### passed')
+        if int(Function_selector) <=4:
+            Function_selector_number =int(Function_selector)
+            #this next line make no sense and need to be changed, it his here for debug purpose
+        elif int(Function_selector)>4:
+            Function_selector_string = int(Function_selector)-5
+            #this next line make no sense and need to be changed it his here for debug purpose
 
         print('Test step 9: call SetString operation')
         setstring_operations = mdib.descriptions.NODETYPE.get(pm.SetStringOperationDescriptor, [])
         #extraction of 'enumstring.ch0.vmd1_sco_0' name from setstring_operations
         # Assuming setstring_operations[0] is an instance of the SetStringOperationDescriptor class
+        if int(Function_selector) >4:
+            Function_selector_string =int(Function_selector)-5
+            # Aqui da error porque no llega a haber tantas operaciones de strings
+            descriptor_str = str(setstring_operations[Function_selector_string])
 
-        # Aqui da error porque no llega a haber tantas operaciones de strings
-        descriptor_str = str(setstring_operations[int(Function_selector)])
+            # Find the position of "handle=" in the string
+            handle_index = descriptor_str.find("handle=")   
 
-        # Find the position of "handle=" in the string
-        handle_index = descriptor_str.find("handle=")   
+            # Extract the substring starting from "handle=" to the next space
+            handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
 
-        # Extract the substring starting from "handle=" to the next space
-        handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
+            # Now, handle_substr should contain the handle value
+            handle_value = handle_substr.strip()
+            setval_handle_selector = 'numeric_Function_Selector.ch0.vmd1_sco_0'
+            # Print the extracted handle
+            print("headers de las strings")
+            print("Handle:", handle_value)
 
-        # Now, handle_substr should contain the handle value
-        handle_value = handle_substr.strip()
-
-        # Print the extracted handle
-        print("headers de las strings")
-        print("Handle:", handle_value)
-
-        #I would say that setst_handle is the handle of the string that the user will choose, and schalter_value the metric value
-        setst_handle = 'enumstring.ch0.vmd1_sco_0'
-        setst_handle1="string.ch0.vmd1_sco_0"
-        setst_handle2="string_2.ch0.vmd1_sco_0"
-        setst_handle3="string_3.ch0.vmd1_sco_0"
-        
-        if len(setstring_operations) == 0:
-            print('Test step 9(SetString) failed, no SetString operation found')
-            results.append('### Test 9 ### failed')
-        else:
-            for s in setstring_operations:
-                if s.Handle != handle_value:
-                    continue
-                print('setString Op ={}'.format(s))
-                try:
-                    fut = client.set_service_client.set_string(s.Handle, schalter_value)
+            #I would say that setst_handle is the handle of the string that the user will choose, and schalter_value the metric value
+            setst_handle = 'enumstring.ch0.vmd1_sco_0'
+            setst_handle1="string.ch0.vmd1_sco_0"
+            setst_handle2="string_2.ch0.vmd1_sco_0"
+            setst_handle3="string_3.ch0.vmd1_sco_0"
+            
+            if len(setstring_operations) == 0:
+                print('Test step 9(SetString) failed, no SetString operation found')
+                results.append('### Test 9 ### failed')
+            else:
+                for s in setstring_operations:
+                    if s.Handle != handle_value:
+                        continue
+                    print('setString Op ={}'.format(s))
                     try:
-                        res = fut.result(timeout=10)
-                        print("guten morgen")
-                        print(dir(res.set_response))
-                        print(res.set_response.value_class_from_node)
-                        print("bis Spater")
-                        if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
-                            print('set string operation {} did not finish with "Fin":{}'.format(s.Handle, res))
+                        fut = client.set_service_client.set_string(s.Handle, schalter_value)
+                        fut_selector = client.set_service_client.set_numeric_value(setval_handle_selector, Decimal(int(Function_selector)))
+                        try:
+                            res = fut.result(timeout=10)
+                            res_selector = fut_selector.result(timeout=10)
+                            print("guten morgen")
+                            print(dir(res.set_response))
+                            print(res.set_response.value_class_from_node)
+                            print("bis Spater")
+                            if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
+                                print('set string operation {} did not finish with "Fin":{}'.format(s.Handle, res))
+                                results.append('### Test 9(SetString) ### failed')
+                            else:
+                                print('set string operation {} ok:{}'.format(s.Handle, res))
+                                results.append('### Test 9(SetString) ### passed')
+                        except futures.TimeoutError:
+                            print('timeout error')
                             results.append('### Test 9(SetString) ### failed')
-                        else:
-                            print('set string operation {} ok:{}'.format(s.Handle, res))
-                            results.append('### Test 9(SetString) ### passed')
-                    except futures.TimeoutError:
-                        print('timeout error')
+                    except Exception as ex:
+                        print(f'Test 9(SetString): {ex}')
                         results.append('### Test 9(SetString) ### failed')
-                except Exception as ex:
-                    print(f'Test 9(SetString): {ex}')
-                    results.append('### Test 9(SetString) ### failed')
+        elif int(Function_selector)<=4:
+            Function_selector_number = int(Function_selector)
+            print('Test step 9: call SetValue operation')
+            setvalue_operations = mdib.descriptions.NODETYPE.get(pm.SetValueOperationDescriptor, [])
+            #    print('setvalue_operations', setvalue_operations)
+                    # Aqui da error porque no llega a haber tantas operaciones de strings
+            descriptor_str = str(setvalue_operations[Function_selector_number])
 
-        print('Test step 9: call SetValue operation')
-        setvalue_operations = mdib.descriptions.NODETYPE.get(pm.SetValueOperationDescriptor, [])
-        #    print('setvalue_operations', setvalue_operations)
-                # Aqui da error porque no llega a haber tantas operaciones de strings
-        descriptor_str = str(setvalue_operations[int(Function_selector)])
+            # Find the position of "handle=" in the string
+            handle_index = descriptor_str.find("handle=")   
 
-        # Find the position of "handle=" in the string
-        handle_index = descriptor_str.find("handle=")   
+            # Extract the substring starting from "handle=" to the next space
+            handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
 
-        # Extract the substring starting from "handle=" to the next space
-        handle_substr = descriptor_str[handle_index + len("handle="):].split(" ")[0]
+            # Now, handle_substr should contain the handle value
+            handle_value = handle_substr.strip()
 
-        # Now, handle_substr should contain the handle value
-        handle_value = handle_substr.strip()
-
-        # Print the extracted handle
-        print("headers de las strings")
-        print("Handle:", handle_value)
+            # Print the extracted handle
+            print("headers de las strings")
+            print("Handle:", handle_value)
 
 
-        setval_handle_selector = 'numeric_Function_Selector.ch0.vmd1_sco_0'
+            setval_handle_selector = 'numeric_Function_Selector.ch0.vmd1_sco_0'
 
-        setval_handle = "numeric.ch0.vmd1_sco_0"
+            setval_handle = "numeric.ch0.vmd1_sco_0"
 
-        if len(setvalue_operations) == 0:
-            print('Test step 9 failed, no SetValue operation found')
-            results.append('### Test 9(SetValue) ### failed')
-        else:
-            for s in setvalue_operations:
-                if s.Handle != handle_value:
-                    continue
-                print('setNumericValue Op ={}'.format(s))
-                try:
-                    
-                    fut = client.set_service_client.set_numeric_value(s.Handle, Decimal(int(schalter_value)))
-                    fut_selector = client.set_service_client.set_numeric_value(setval_handle_selector, Decimal(int(Function_selector)))
+            if len(setvalue_operations) == 0:
+                print('Test step 9 failed, no SetValue operation found')
+                results.append('### Test 9(SetValue) ### failed')
+            else:
+                for s in setvalue_operations:
+                    if s.Handle != handle_value:
+                        continue
+                    print('setNumericValue Op ={}'.format(s))
                     try:
-                        res = fut.result(timeout=10)
-                        res_selector = fut_selector.result(timeout=10)
-                        print("hola")
-                        print(Decimal('42'))
-                        print("adios")
-                        if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
-                            print('set value operation {} did not finish with "Fin":{}'.format(s.Handle, res))
-                        else:
-                            print('set value operation {} ok:{}'.format(s.Handle, res))
-                            results.append('### Test 9(SetValue) ### passed')
-                    except futures.TimeoutError:
-                        print('timeout error')
+                        
+                        fut = client.set_service_client.set_numeric_value(s.Handle, Decimal(int(schalter_value)))
+                        fut_selector = client.set_service_client.set_numeric_value(setval_handle_selector, Decimal(int(Function_selector)))
+                        try:
+                            res = fut.result(timeout=10)
+                            res_selector = fut_selector.result(timeout=10)
+                            print("hola")
+                            print(Decimal('42'))
+                            print("adios")
+                            if res.InvocationInfo.InvocationState != InvocationState.FINISHED:
+                                print('set value operation {} did not finish with "Fin":{}'.format(s.Handle, res))
+                            else:
+                                print('set value operation {} ok:{}'.format(s.Handle, res))
+                                results.append('### Test 9(SetValue) ### passed')
+                        except futures.TimeoutError:
+                            print('timeout error')
+                            results.append('### Test 9(SetValue) ### failed')
+                    except Exception as ex:
+                        print(f'Test 9(SetValue): {ex}')
                         results.append('### Test 9(SetValue) ### failed')
-                except Exception as ex:
-                    print(f'Test 9(SetValue): {ex}')
-                    results.append('### Test 9(SetValue) ### failed')
-        time.sleep(5)
+            time.sleep(5)
 
     
     print('Test step 10: cancel all subscriptions')
