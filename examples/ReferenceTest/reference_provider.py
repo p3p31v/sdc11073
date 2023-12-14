@@ -226,7 +226,6 @@ def run_provider():
                     if not state_general.MetricValue:
                         state_general.mk_metric_value()
 
-                    print("No control value assigned")
                     input_metric = state_general.MetricValue.Value
 
                     try:

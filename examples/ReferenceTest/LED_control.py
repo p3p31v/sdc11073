@@ -120,7 +120,7 @@ class LEDConnectorProviderRole():
     # ... (other methods)
 
 #led_connector = LEDConnectorProviderRole()
-#led_connector._selectOperation(5, "off")
+#led_connector._selectOperation(5, "on")
 
 #led_connector._selectOperation("primary_colorchange", "#FF0000")
 #led_connector._selectOperation("BrightnessChange", 150)
