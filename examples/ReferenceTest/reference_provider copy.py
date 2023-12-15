@@ -73,7 +73,7 @@ def create_reference_provider(
         ssl_context_container: sdc11073.certloader.SSLContextContainer | None = None) -> provider.SdcProvider:
     # generic way to create a device, this what you usually do:
     #ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
-    ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.1.1.10")
+    ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.0.10.2")#10.1.1.10
     ws_discovery.start()
    # print('hola')
     #encendido = ['win&T=1']
@@ -147,7 +147,7 @@ def run_provider():
     logger = setup_logging()
 
     adapter = get_network_adapter()
-    wsd = wsdiscovery.WSDiscovery(ip_address = "10.1.1.10")
+    wsd = wsdiscovery.WSDiscovery(ip_address = "10.0.10.2")
     wsd.start()
 
     if USE_REFERENCE_PARAMETERS:

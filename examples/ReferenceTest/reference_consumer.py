@@ -32,8 +32,8 @@ def run_ref_test():
     results = []
     print(f'using adapter address {adapter_ip}')
     print('Test step 1: discover device which endpoint ends with "{}"'.format(search_epr))
-    wsd = WSDiscovery(adapter_ip)
-    #wsd = WSDiscovery(ip_address = "10.249.117.79")
+    #wsd = WSDiscovery(adapter_ip)
+    wsd = WSDiscovery(ip_address = "10.0.10.2")
     wsd.start()
 
     my_service = None

@@ -21,7 +21,7 @@ from sdc11073.provider.subscriptionmgr_async import SubscriptionsManagerReferenc
 from sdc11073.xml_types import dpws_types, pm_types
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
-from LED_control_copy import LEDConnectorProviderRole
+from LED_control import LEDConnectorProviderRole
 
 if TYPE_CHECKING:
     pass
@@ -72,8 +72,8 @@ def create_reference_provider(
         specific_components: SdcProviderComponents | None = None,
         ssl_context_container: sdc11073.certloader.SSLContextContainer | None = None) -> provider.SdcProvider:
     # generic way to create a device, this what you usually do:
-    ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
-    #ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
+    #ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    ws_discovery = wsdiscovery.WSDiscovery(ip_address = "10.0.10.2")
     ws_discovery.start()
    # print('hola')
     #encendido = ['win&T=1']
@@ -147,8 +147,8 @@ def run_provider():
     logger = setup_logging()
 
     adapter = get_network_adapter()
-    wsd = wsdiscovery.WSDiscovery(get_network_adapter().ip)
-    #wsd = wsdiscovery.WSDiscovery(ip_address = "10.249.117.79")
+    #wsd = wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    wsd = wsdiscovery.WSDiscovery(ip_address = "10.0.10.2")
     wsd.start()
 
     if USE_REFERENCE_PARAMETERS:
@@ -229,8 +229,8 @@ def run_provider():
                     try:
                         led_connector = LEDConnectorProviderRole()
                         led_connector._selectOperation(Control_metric, input_metric)
-                    except:
-                        print("No value assigned to the metric")
+                    except Exception as error:
+                        print("No value assigned to the metric", type(error).__name__)
 
                     print(state.MetricValue.Value)
                     print(state_general.MetricValue.Value)
