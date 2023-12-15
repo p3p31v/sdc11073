@@ -102,7 +102,6 @@ def create_reference_provider(
         desc.SafetyClassification = pm_types.SafetyClassification.MED_A
     prov.start_all(start_rtsample_loop=False)
     return prov
-
 #probably can be deleted
 def set_reference_data(prov: provider.SdcProvider, loc: location.SdcLocation = None):
     loc = loc or get_location()
@@ -117,7 +116,6 @@ def set_reference_data(prov: provider.SdcProvider, loc: location.SdcLocation = N
         patient_state.CoreData.Title = "Title"
         patient_state.ContextAssociation = pm_types.ContextAssociation.ASSOCIATED
         patient_state.Identification = []
-
 
 def mk_all_services_except_localization(prov: provider.SdcProvider,
                                         components: SdcProviderComponents,
@@ -164,16 +162,7 @@ def run_provider():
 
 
     metric_set = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1')
-    metric_set_palette = prov.mdib.descriptions.handle.get_one('numeric_palette.ch0.vmd1')
-    metric_set_brightness = prov.mdib.descriptions.handle.get_one('numeric_brightness.ch0.vmd1')
-    metric_set_speed = prov.mdib.descriptions.handle.get_one('numeric_Effect_Speed.ch0.vmd1')
-    metric_set_intensity = prov.mdib.descriptions.handle.get_one('numeric_Effect_Intensity.ch0.vmd1')
-    metric_set_selector = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1')
 
-    string_metric_set = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1')
-    string1_metric_set = prov.mdib.descriptions.handle.get_one('string.ch0.vmd1')
-    string2_metric_set = prov.mdib.descriptions.handle.get_one('string_2.ch0.vmd1')
-    string3_metric_set = prov.mdib.descriptions.handle.get_one('string_3.ch0.vmd1')
 
     value_operation = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')

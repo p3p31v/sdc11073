@@ -162,10 +162,6 @@ def run_ref_test():
             print("Handle:", handle_value)
 
             #I would say that setst_handle is the handle of the string that the user will choose, and schalter_value the metric value
-            setst_handle = 'enumstring.ch0.vmd1_sco_0'
-            setst_handle1="string.ch0.vmd1_sco_0"
-            setst_handle2="string_2.ch0.vmd1_sco_0"
-            setst_handle3="string_3.ch0.vmd1_sco_0"
             
             if len(setstring_operations) == 0:
                 print('Test step 9(SetString) failed, no SetString operation found')
@@ -221,7 +217,6 @@ def run_ref_test():
 
             setval_handle_selector = 'numeric_Function_Selector.ch0.vmd1_sco_0'
 
-            setval_handle = "numeric.ch0.vmd1_sco_0"
 
             if len(setvalue_operations) == 0:
                 print('Test step 9 failed, no SetValue operation found')

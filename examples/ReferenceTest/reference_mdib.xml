@@ -146,7 +146,7 @@
 						</pm:Type>
 						<pm:Metric Handle="numeric.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="196274"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Effect value</pm:ConceptDescription>
 							</pm:Type>
@@ -158,7 +158,7 @@
 						</pm:Metric>
 						<pm:Metric Handle="numeric_palette.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="196280"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Color palette</pm:ConceptDescription>
 							</pm:Type>
@@ -170,7 +170,7 @@
 						</pm:Metric>
 						<pm:Metric Handle="numeric_brightness.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="196290"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Brightness of the light</pm:ConceptDescription>
 							</pm:Type>
@@ -182,7 +182,7 @@
 						</pm:Metric>
 							<pm:Metric Handle="numeric_Effect_Speed.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="196280"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Speed effect value</pm:ConceptDescription>
 							</pm:Type>
@@ -195,7 +195,7 @@
 
 						<pm:Metric Handle="numeric_Effect_Intensity.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="196281"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Intensity of the light</pm:ConceptDescription>
 							</pm:Type>
@@ -236,7 +236,7 @@
 								<pm:ConceptDescription Lang="en-US">Primary color value</pm:ConceptDescription>
 							</pm:Type>
 							<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
-								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
 						</pm:Metric>
 						<pm:Metric Handle="string_2.ch0.vmd1"
@@ -261,12 +261,12 @@
 						</pm:Metric>
 						<pm:Metric Handle="numeric_Function_Selector.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="196300"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Function selector for the LED</pm:ConceptDescription>
 							</pm:Type>
 							<pm:Unit Code="262301"> <!-- MDC_DIM_DIMLESS = 4:512 -->
-								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
+								<pm:ConceptDescription Lang="en-US">Index</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="7" Lower="0"
 								StepWidth="1" />

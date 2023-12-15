@@ -117,8 +117,7 @@ class LEDConnectorProviderRole():
         except ValueError:
             print("Invalid operation value. Please provide a valid integer.")
 
-    # ... (other methods)
-
+    # ... (other methods) 
 #led_connector = LEDConnectorProviderRole()
 #led_connector._selectOperation(5, "on")
 
