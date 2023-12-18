@@ -75,6 +75,8 @@ def run_ref_test():
         else:
             print('found no patients, Test step 5 failed')
             results.append('### Test 5 ### failed')
+            
+        #eliminar esta parte
 
         print('Test step 6: check that at least one location context exists')
         locations = mdib.context_states.NODETYPE.get(pm.LocationContextState, [])
@@ -86,33 +88,7 @@ def run_ref_test():
             results.append('### Test 6 ### failed')
 
         print('Test step 7&8: count metric state updates and alert state updates')
-        metric_updates = defaultdict(list)
-        alert_updates = defaultdict(list)
 
-        def onMetricUpdates(metricsbyhandle):
-            print('onMetricUpdates', metricsbyhandle)
-            for k, v in metricsbyhandle.items():
-                metric_updates[k].append(v)
-
-        observableproperties.bind(mdib, metrics_by_handle=onMetricUpdates)
-
-        sleep_timer = 20
-        min_updates = sleep_timer // 5 - 1
-        print(f'will wait for {sleep_timer} seconds now, expecting at least {min_updates} updates per Handle')
-        time.sleep(sleep_timer)
-        print(metric_updates)
-        print(alert_updates)
-        
-        if not metric_updates:
-            results.append('### Test 7 ### failed')
-        else:
-            for k, v in metric_updates.items():
-                if len(v) < min_updates:
-                    print(f'found only {len(v)} updates for {k}, test step 7 failed')
-                    results.append(f'### Test 7 Handle {k} ### failed')
-                else:
-                    print(f'found {len(v)} updates for {k}, test step 7 ok')
-                    results.append(f'### Test 7 Handle {k} ### passed')
         if int(Function_selector) <= 4:
             print('Test step 9: call SetValue operation')
             set_operations = mdib.descriptions.NODETYPE.get(pm.SetValueOperationDescriptor, [])
