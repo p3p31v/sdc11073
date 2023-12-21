@@ -24,37 +24,37 @@ ENABLE_COMMLOG = True
 def run_ref_test():
     results = []
     print(f'using adapter address {adapter_ip}')
-    print(f'Test step 1: discover device with endpoint ending with "{search_epr}"')
+    print(f'Discover device with endpoint ending with "{search_epr}"')
     wsd = WSDiscovery(ip_address="10.0.10.2")
     wsd.start()
     my_service = next((s for s in wsd.search_services(types=SdcV1Definitions.MedicalDeviceTypesFilter) if s.epr.endswith(search_epr)), None)
     
     if my_service:
         print('found service {}'.format(my_service.epr))
-        print('Test step 1 successful: device discovered')
+        print('Device discovered')
         results.append('### Test 1 ### passed')
     else:
         print('Test step 1 failed: device not found')
         results.append('### Test 1 ### failed')
         return results
 
-    print('Test step 2: connect to device...')
+    print('Connect to device...')
     try:
         ssl_context_container = mk_ssl_contexts_from_folder(ca_folder, cyphers_file=None, private_key='user_private_key_encrypted.pem', certificate='user_certificate_root_signed.pem', ca_public_key='root_certificate.pem', ssl_passwd=ssl_passwd) if ca_folder else None
         client = SdcConsumer.from_wsd_service(my_service, ssl_context_container=ssl_context_container, validate=True)
         client.start_all()
-        print('Test step 2 successful: connected to device')
+        print('Connected to device')
         results.append('### Test 2 ### passed')
     except Exception as ex:
         print(f'Test 2: {ex}')
         results.append('### Test 2 ### failed')
         return results
 
-    print('Test step 3&4: get mdib and subscribe...')
+    print('Get mdib and subscribe...')
     try:
         mdib = ConsumerMdib(client)
         mdib.init_mdib()
-        print('Test step 3&4 successful')
+        print('Successful')
         results.append('### Test 3 ### passed')
         results.append('### Test 4 ### passed')
     except Exception as ex:
@@ -64,10 +64,20 @@ def run_ref_test():
         return results
 
     while True:
+        print("Select the number\n"
+      "0: '_LED_Effect_Index',\n"
+      "1: '_LED_Palette_Index',\n"
+      "2: '_BrightnessChange',\n"
+      "3: '_EffectSpeed',\n"
+      "4: '_EffectIntensity',\n"
+      "5: '_controlLedOperation',\n"
+      "6: '_Primary_Colorchange',\n"
+      "7: '_Secondary_Colorchange',\n"
+      "8: '_Third_Colorchange',")
         Function_selector = input("write the number for the function you want to select")
         schalter_value = input("write the value for the function you want to select")
         pm = mdib.data_model.pm_names
-        print('Test step 5: check that at least one patient context exists')
+        print('Check that at least one patient context exists')
         patients = mdib.context_states.NODETYPE.get(pm.PatientContextState, [])
         if patients:
             print(f'found {len(patients)} patients, Test step 5 successful')
@@ -78,7 +88,7 @@ def run_ref_test():
             
         #eliminar esta parte
 
-        print('Test step 6: check that at least one location context exists')
+        print('Check that at least one location context exists')
         locations = mdib.context_states.NODETYPE.get(pm.LocationContextState, [])
         if locations:
             print(f'found {len(locations)} locations, Test step 6 successful')
@@ -87,13 +97,11 @@ def run_ref_test():
             print('found no locations, Test step 6 failed')
             results.append('### Test 6 ### failed')
 
-        print('Test step 7&8: count metric state updates and alert state updates')
-
         if int(Function_selector) <= 4:
-            print('Test step 9: call SetValue operation')
+            print('Call SetValue operation')
             set_operations = mdib.descriptions.NODETYPE.get(pm.SetValueOperationDescriptor, [])
         elif int(Function_selector) > 4:
-            print('Test step 9: call SetString operation')
+            print('Call SetString operation')
             set_operations = mdib.descriptions.NODETYPE.get(pm.SetStringOperationDescriptor, [])
         else:
             print(f'Invalid input for Function_selector: {Function_selector}')
