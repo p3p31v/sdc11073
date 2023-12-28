@@ -162,7 +162,7 @@ def run_provider():
 
 
     metric_set = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1')
-
+    alert_condition = prov.mdib.descriptions.handle.get_one('ac0.mds0')
 
     value_operation = prov.mdib.descriptions.handle.get_one('numeric_Function_Selector.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')
@@ -200,12 +200,9 @@ def run_provider():
                 with prov.mdib.transaction_manager() as mgr:
                     #aqui puedo definir metric_state con numeric_metric_list y asociarlo a la string_metric_set o numeric_metric_set que quiera
                     state = mgr.get_state(metric_set.Handle)
-
                    
                     if not state.MetricValue:
                         state.mk_metric_value()
-
-                    #state.MetricValue.Value = decimal.Decimal(current_value)
                     print("hola")
                     Control_metric = state.MetricValue.Value
                     #we get the value of the handle for the option to get the state of user desired metric
@@ -228,6 +225,16 @@ def run_provider():
 
                     #current_value += 1
             except Exception:  # noqa: BLE001
+                logger.error(traceback.format_exc())
+
+            try:
+                with prov.mdib.transaction_manager() as mgr:
+                    state = mgr.get_state(alert_condition.Handle)
+                    if Control_metric==2 and input_metric==255:
+                        state.Presence = not state.Presence
+                    logger.info(f'Set @Presence={state.Presence} of the alert condition with the handle '
+                                    f'"{alert_condition.Handle}".')
+            except:
                 logger.error(traceback.format_exc())
             time.sleep(5)
     except KeyboardInterrupt:

@@ -19,7 +19,17 @@
 				<pm:Type Code="130535"> <!-- 1:64.999 -->
 						<pm:ConceptDescription Lang="en-US">not settable metrics</pm:ConceptDescription>
 				</pm:Type>
-
+				<pm:AlertSystem SafetyClassification="MedA" Handle="asy.mds0" SelfCheckPeriod="PT5S">
+					<pm:AlertCondition Handle="ac0.mds0"
+							xsi:type="pm:AlertConditionDescriptor"
+							SafetyClassification="MedA" Kind="Phy" Priority="Me">
+							<pm:Type Code="262108‬"> <!-- 3:65.500 -->
+								<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Source>mds0</pm:Source>
+					</pm:AlertCondition>
+					<pm:AlertSignal Handle="as0.mds0" ConditionSignaled="ac0.mds0" Manifestation="Aud" Latching="false" SafetyClassification="MedA" />
+				</pm:AlertSystem>
 				<pm:Sco Handle="sco.mds0">
 					<pm:Operation Handle="actop.mds0_sco_0"
 						xsi:type="pm:ActivateOperationDescriptor"
