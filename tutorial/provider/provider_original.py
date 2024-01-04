@@ -52,7 +52,8 @@ if __name__ == '__main__':
     # start with discovery (MDPWS) that is running on the named adapter "Ethernet" (replace as you need it on your machine, e.g. "enet0" or "Ethernet")
     basic_logging_setup(level=logging.INFO)
 
-    my_discovery = WSDiscovery(ip_address="10.0.10.2")
+    #my_discovery = WSDiscovery(ip_address="10.0.10.4")
+    my_discovery = WSDiscoverySingleAdapter("VPN - VPN Client")
     # start the discovery
     my_discovery.start()
     # create a local mdib that will be sent out on the network, the mdib is based on a XML file

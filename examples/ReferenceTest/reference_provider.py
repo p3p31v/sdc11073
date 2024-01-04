@@ -72,8 +72,9 @@ def create_reference_provider(
         specific_components: SdcProviderComponents | None = None,
         ssl_context_container: sdc11073.certloader.SSLContextContainer | None = None) -> provider.SdcProvider:
     # generic way to create a device, this what you usually do:
-    #ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
-    ws_discovery = WSDiscoverySingleAdapter("VPN - VPN Client")
+    ws_discovery = ws_discovery or wsdiscovery.WSDiscovery(get_network_adapter().ip)
+    #ws_discovery = WSDiscoverySingleAdapter("VPN - VPN Client")
+    #ws_discovery = WSDiscoverySingleAdapter("WLAN")
     ws_discovery.start()
     dpws_model = dpws_model or ThisModelType(manufacturer='sdc11073',
                                              manufacturer_url='www.sdc11073.com',
@@ -145,15 +146,16 @@ def run_provider():
     adapter = get_network_adapter()
     #wsd = wsdiscovery.WSDiscovery(adapter.ip)
     wsd = WSDiscoverySingleAdapter("VPN - VPN Client")
+    #wsd = WSDiscoverySingleAdapter("WLAN")
     wsd.start()
 
-    if USE_REFERENCE_PARAMETERS:
-        specific_components = SdcProviderComponents(
-            subscriptions_manager_class={'StateEvent': SubscriptionsManagerReferenceParamAsync},
-            services_factory=mk_all_services_except_localization,
-        )
-    else:
-        specific_components = None  # provComponents(services_factory=mk_all_services_except_localization)
+    #if USE_REFERENCE_PARAMETERS:
+        #specific_components = SdcProviderComponents(
+            #subscriptions_manager_class={'StateEvent': SubscriptionsManagerReferenceParamAsync},
+            #services_factory=mk_all_services_except_localization,
+        #)
+    #else:
+    specific_components = None  # provComponents(services_factory=mk_all_services_except_localization)
 
     prov = create_reference_provider(ws_discovery=wsd, specific_components=specific_components)
     set_reference_data(prov, get_location())
@@ -182,6 +184,7 @@ def run_provider():
                     if not state.MetricValue:
                         state.mk_metric_value()
                     state.MetricValue.Value=state.MetricValue.Value + decimal.Decimal(current_value)
+                    print(type(state.MetricValue.Value))
                     logger.info(f'Set pm:MetricValue/@Value={state.MetricValue.Value} of the metric with the handle '
                                 f'"{metric.Handle}".')
                     current_value += 1

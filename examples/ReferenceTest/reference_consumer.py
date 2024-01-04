@@ -31,7 +31,8 @@ def run_ref_test():
     print(f'using adapter address {adapter_ip}')
     print('Test step 1: discover device which endpoint ends with "{}"'.format(search_epr))
     #wsd = WSDiscovery(adapter_ip)
-    wsd = WSDiscoverySingleAdapter("VPN - VPN Client")
+    #wsd = WSDiscoverySingleAdapter("VPN - VPN Client")
+    wsd = WSDiscoverySingleAdapter("WLAN")
     wsd.start()
     my_service = None
     while my_service is None:
