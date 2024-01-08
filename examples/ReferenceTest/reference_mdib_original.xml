@@ -91,6 +91,16 @@
 							<pm:TechnicalRange Upper="100" Lower="1"
 								StepWidth="1" />
 						</pm:Metric>
+						<pm:Metric Handle="Real_time.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:RealTimeSampleArrayMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1" SamplePeriod="PT5S">
+							<pm:Type Code="196174"> <!-- 2:65.102 -->
+								<pm:ConceptDescription Lang="en-US">Streaming metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+						</pm:Metric>
 
 						<pm:Metric Handle="enumstring.ch0.vmd0"
 							SafetyClassification="MedA"
@@ -286,6 +296,11 @@
 		<pm:MdState StateVersion="115" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       		<pm:State ActivationState="On" DescriptorHandle="numeric.ch1.vmd0" StateVersion="0" xsi:type="pm:NumericMetricState">
 				<pm:MetricValue DeterminationTime="0" Value="47">
+					<pm:MetricQuality Validity="Vld"/>
+				</pm:MetricValue>
+			</pm:State>
+			<pm:State ActivationState="On" DescriptorHandle="Real_time.ch0.vmd0" StateVersion="0" xsi:type="pm:RealTimeSampleArrayMetricState">
+				<pm:MetricValue DeterminationTime="0" Samples="1 2 3">
 					<pm:MetricQuality Validity="Vld"/>
 				</pm:MetricValue>
 			</pm:State>

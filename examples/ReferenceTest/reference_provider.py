@@ -160,7 +160,8 @@ def run_provider():
     prov = create_reference_provider(ws_discovery=wsd, specific_components=specific_components)
     set_reference_data(prov, get_location())
 
-    metric = prov.mdib.descriptions.handle.get_one('numeric.ch1.vmd0')
+    metric = prov.mdib.descriptions.handle.get_one('Real_time.ch0.vmd0')
+    numeric_metric = prov.mdib.descriptions.handle.get_one('numeric.ch1.vmd0')
     alert_condition = prov.mdib.descriptions.handle.get_one('ac0.mds0')
     value_operation = prov.mdib.descriptions.handle.get_one('numeric.ch0.vmd1_sco_0')
     string_operation = prov.mdib.descriptions.handle.get_one('enumstring.ch0.vmd1_sco_0')
@@ -180,13 +181,20 @@ def run_provider():
         while True:
             try:
                 with prov.mdib.transaction_manager() as mgr:
-                    state = mgr.get_state(metric.Handle)
-                    if not state.MetricValue:
-                        state.mk_metric_value()
-                    state.MetricValue.Value=state.MetricValue.Value + decimal.Decimal(current_value)
-                    print(type(state.MetricValue.Value))
-                    logger.info(f'Set pm:MetricValue/@Value={state.MetricValue.Value} of the metric with the handle '
+                    #state = mgr.get_state(numeric_metric.Handle)
+                    state_array = mgr.get_state(metric.Handle)
+                    if not state_array.MetricValue:
+                        state_array.mk_metric_value()
+                    #if not state.MetricValue:
+                        #state.mk_metric_value()
+                    state_array.MetricValue.Samples.append(decimal.Decimal(current_value))
+                    #state.MetricValue.Value=state.MetricValue.Value + decimal.Decimal(current_value)
+                    print(type(state_array.MetricValue.Samples))
+                    logger.info(f'Set pm:MetricValue/@Samples={state_array.MetricValue.Samples} of the metric with the handle '
                                 f'"{metric.Handle}".')
+                    #print(type(state.MetricValue.Value))
+                    #logger.info(f'Set pm:MetricValue/@Value={state.MetricValue.Value} of the metric with the handle '
+                                #f'"{numeric_metric.Handle}".')
                     current_value += 1
             except Exception:  # noqa: BLE001
                 logger.error(traceback.format_exc())
