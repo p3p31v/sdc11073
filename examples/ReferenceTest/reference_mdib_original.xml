@@ -293,7 +293,7 @@
 				</pm:Vmd>
 			</pm:Mds>
 		</pm:MdDescription>
-		<pm:MdState StateVersion="115" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<pm:MdState StateVersion="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       		<pm:State ActivationState="On" DescriptorHandle="numeric.ch1.vmd0" StateVersion="0" xsi:type="pm:NumericMetricState">
 				<pm:MetricValue DeterminationTime="0" Value="47">
 					<pm:MetricQuality Validity="Vld"/>

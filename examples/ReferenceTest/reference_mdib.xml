@@ -24,7 +24,7 @@
 							xsi:type="pm:AlertConditionDescriptor"
 							SafetyClassification="MedA" Kind="Phy" Priority="Me">
 							<pm:Type Code="262108‬"> <!-- 3:65.500 -->
-								<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								<pm:ConceptDescription Lang="en-US">Brightness = 255 condition</pm:ConceptDescription>
 							</pm:Type>
 							<pm:Source>mds0</pm:Source>
 					</pm:AlertCondition>

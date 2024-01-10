@@ -203,7 +203,7 @@ def run_provider():
                    
                     if not state.MetricValue:
                         state.mk_metric_value()
-                    print("hola")
+
                     Control_metric = state.MetricValue.Value
                     #we get the value of the handle for the option to get the state of user desired metric
                     state_general=mgr.get_state(prov.mdib.descriptions.handle.get_one(numeric_metric_list[int(Control_metric)]).Handle)
@@ -220,7 +220,6 @@ def run_provider():
 
                     print(state.MetricValue.Value)
                     print(state_general.MetricValue.Value)
-                    print("adios")
 
 
                     #current_value += 1
