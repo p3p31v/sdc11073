@@ -304,6 +304,14 @@
 					<pm:MetricQuality Validity="Vld"/>
 				</pm:MetricValue>
 			</pm:State>
+
+			<pm:State DescriptorHandle="string.ch0.vmd1_sco_0" OperatingMode= "En" StateVersion="0" xsi:type="pm:SetStringOperationState">
+				<pm:AllowedValues>
+					<pm:Value>ON</pm:Value>
+					<pm:Value>OFF</pm:Value>
+				</pm:AllowedValues>
+
+			</pm:State>
 		</pm:MdState>
 	</msg:Mdib>
 </msg:GetMdibResponse>
