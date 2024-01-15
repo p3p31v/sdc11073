@@ -23,7 +23,7 @@
 					<pm:AlertCondition Handle="ac0.mds0"
 							xsi:type="pm:AlertConditionDescriptor"
 							SafetyClassification="MedA" Kind="Phy" Priority="Me">
-							<pm:Type Code="262108‬"> <!-- 3:65.500 -->
+							<pm:Type Code="130536"> <!-- 3:65.500 -->
 								<pm:ConceptDescription Lang="en-US">Brightness = 255 condition</pm:ConceptDescription>
 							</pm:Type>
 							<pm:Source>mds0</pm:Source>
@@ -35,7 +35,7 @@
 						xsi:type="pm:ActivateOperationDescriptor"
 						SafetyClassification="MedC" OperationTarget="mds0"
 						MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-						<pm:Type Code="196279"> <!-- 2:65.207 -->
+						<pm:Type Code="130537"> <!-- 2:65.207 -->
 							<pm:ConceptDescription Lang="en-US">Activation</pm:ConceptDescription>
 						</pm:Type>
 					</pm:Operation>
@@ -47,7 +47,7 @@
 				
 
 				<pm:Vmd Handle="vmd1" SafetyClassification="MedA">
-					<pm:Type Code="130736"> <!-- 1:65.200 -->
+					<pm:Type Code="130538"> <!-- 1:65.200 -->
 						<pm:ConceptDescription Lang="en-US">Vmd</pm:ConceptDescription>
 					</pm:Type>
 					<pm:Sco Handle="sco.vmd1.mds0">
@@ -57,7 +57,7 @@
 							Handle="numeric.ch0.vmd1_sco_0"
 							OperationTarget="numeric.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196276"> <!-- 2:65.204 -->
+							<pm:Type Code="130539"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set effect index</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -67,7 +67,7 @@
 							Handle="numeric_palette.ch0.vmd1_sco_0"
 							OperationTarget="numeric_palette.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196292"> <!-- 2:65.204 -->
+							<pm:Type Code="130540"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set the palette</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -76,7 +76,7 @@
 							Handle="numeric_brightness.ch0.vmd1_sco_0"
 							OperationTarget="numeric_brightness.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196293"> <!-- 2:65.204 -->
+							<pm:Type Code="130541"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">set brightness value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -85,7 +85,7 @@
 							Handle="numeric_Effect_Speed.ch0.vmd1_sco_0"
 							OperationTarget="numeric_Effect_Speed.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196294"> <!-- 2:65.204 -->
+							<pm:Type Code="130542"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set the speed value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -94,7 +94,7 @@
 							Handle="numeric_Effect_Intensity.ch0.vmd1_sco_0"
 							OperationTarget="numeric_Effect_Intensity.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196295"> <!-- 2:65.204 -->
+							<pm:Type Code="130543"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set the intensity value value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -103,7 +103,7 @@
 							Handle="numeric_Function_Selector.ch0.vmd1_sco_0"
 							OperationTarget="numeric_Function_Selector.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196301"> <!-- 2:65.204 -->
+							<pm:Type Code="130544"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set operation</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -114,7 +114,7 @@
 							Handle="enumstring.ch0.vmd1_sco_0"
 							OperationTarget="enumstring.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196277"> <!-- 2:65.205 -->
+							<pm:Type Code="130545"> <!-- 2:65.205 -->
 								<pm:ConceptDescription Lang="en-US">Set if the interruptor is on or off</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -124,7 +124,7 @@
 							Handle="string.ch0.vmd1_sco_0"
 							OperationTarget="string.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196278"> <!-- 2:65.206 -->
+							<pm:Type Code="130546"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">set primary value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -133,7 +133,7 @@
 							Handle="string_2.ch0.vmd1_sco_0"
 							OperationTarget="string_2.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196279"> <!-- 2:65.206 -->
+							<pm:Type Code="130547"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">Set secondary color value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -142,7 +142,7 @@
 							Handle="string_3.ch0.vmd1_sco_0"
 							OperationTarget="string_3.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
-							<pm:Type Code="196280"> <!-- 2:65.206 -->
+							<pm:Type Code="130548"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">Set third color value</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
@@ -151,16 +151,16 @@
 					<!-- this is the channel grouping the settable metrics -->
 					<pm:Channel Handle="ch0.vmd1"
 						SafetyClassification="MedA">
-						<pm:Type Code="130737"> <!-- 1:65.201 -->
+						<pm:Type Code="130549"> <!-- 1:65.201 -->
 							<pm:ConceptDescription Lang="en-US">settable metrics</pm:ConceptDescription>
 						</pm:Type>
 						<pm:Metric Handle="numeric.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
-							<pm:Type Code="196274"> <!-- 2:65.202 -->
+							<pm:Type Code="130550"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Effect value</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130551"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Index</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="101" Lower="0"
@@ -169,10 +169,10 @@
 						<pm:Metric Handle="numeric_palette.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
-							<pm:Type Code="196280"> <!-- 2:65.202 -->
+							<pm:Type Code="130552"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Color palette</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262680"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130553"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Index</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="46" Lower="0"
@@ -181,10 +181,10 @@
 						<pm:Metric Handle="numeric_brightness.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
-							<pm:Type Code="196290"> <!-- 2:65.202 -->
+							<pm:Type Code="130554"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Brightness of the light</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262691"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130555"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Bits</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="255" Lower="0"
@@ -193,10 +193,10 @@
 							<pm:Metric Handle="numeric_Effect_Speed.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
-							<pm:Type Code="196280"> <!-- 2:65.202 -->
+							<pm:Type Code="130556"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Speed effect value</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262660"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130557"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Bits</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="255" Lower="0"
@@ -206,10 +206,10 @@
 						<pm:Metric Handle="numeric_Effect_Intensity.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
-							<pm:Type Code="196281"> <!-- 2:65.202 -->
+							<pm:Type Code="130558"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Intensity of the light</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262661"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130559"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Bits</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="255" Lower="0"
@@ -219,21 +219,21 @@
 							SafetyClassification="MedA"
 							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
 							MetricAvailability="Intr">
-							<pm:Type Code="196275"> <!-- 2:65.203 -->
+							<pm:Type Code="130560"> <!-- 2:65.203 -->
 								<pm:ConceptDescription Lang="en-US">Value of the interruptor state (on or off)</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130561"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:AllowedValue>
 								<pm:Value>ON</pm:Value>
-								<pm:Type Code="192834">
+								<pm:Type Code="130562">
 									<pm:ConceptDescription Lang="en-US">ON</pm:ConceptDescription>
 								</pm:Type>
 							</pm:AllowedValue>
 							<pm:AllowedValue>
 								<pm:Value>OFF</pm:Value>
-								<pm:Type Code="192835">
+								<pm:Type Code="130563">
 									<pm:ConceptDescription Lang="en-US">OFF</pm:ConceptDescription>
 								</pm:Type>
 							</pm:AllowedValue>
@@ -242,40 +242,40 @@
 						<pm:Metric Handle="string.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr">
-							<pm:Type Code="196276"> <!-- 2:65.204 -->
+							<pm:Type Code="130564"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Primary color value</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130565"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
 						</pm:Metric>
 						<pm:Metric Handle="string_2.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr">
-							<pm:Type Code="196282"> <!-- 2:65.204 -->
+							<pm:Type Code="130566"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Secundary color value</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262672"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130567"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
 						</pm:Metric>
 						<pm:Metric Handle="string_3.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr">
-							<pm:Type Code="196283"> <!-- 2:65.204 -->
+							<pm:Type Code="130568"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Third color value</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262673"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130569"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
 						</pm:Metric>
 						<pm:Metric Handle="numeric_Function_Selector.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
-							<pm:Type Code="196300"> <!-- 2:65.202 -->
+							<pm:Type Code="130570"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">Function selector for the LED</pm:ConceptDescription>
 							</pm:Type>
-							<pm:Unit Code="262301"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+							<pm:Unit Code="130571"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Index</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:TechnicalRange Upper="7" Lower="0"

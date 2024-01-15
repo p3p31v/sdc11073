@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <msg:GetMdibResponse
 	xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension"
 	xmlns:fn="http://www.w3.org/2005/xpath-functions"
@@ -12,11 +13,13 @@
 	xsi:schemaLocation="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant BICEPS_ParticipantModel.xsd
         		 http://standards.ieee.org/downloads/11073/11073-10207-2017/message BICEPS_MessageModel.xsd
         		 http://standards.ieee.org/downloads/11073/11073-10207-2017/extension ExtensionPoint.xsd"
-	SequenceId="urn:oid:1">
-	<msg:Mdib SequenceId="urn:oid:1">
-		<pm:MdDescription>
+	
+	SequenceId="urn:oid:1" MdibVersion="0">
+	<msg:Mdib MdibVersion="0" SequenceId="urn:oid:1">
+
+		<pm:MdDescription DescriptionVersion="0">
 			<pm:Mds Handle="mds0" SafetyClassification="MedA">
-				<pm:Type Code="130535"> <!-- 1:64.999 -->
+				<pm:Type Code="130535" CodingSystemVersion="0"> <!-- 1:64.999 -->
 						<pm:ConceptDescription Lang="en-US">not settable metrics</pm:ConceptDescription>
 				</pm:Type>
 				<pm:AlertSystem SafetyClassification="MedA" Handle="asy.mds0" SelfCheckPeriod="PT5S">
@@ -81,7 +84,7 @@
 						</pm:Type>
 						<pm:Metric Handle="numeric.ch0.vmd0"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1" DescriptorVersion="0">
 							<pm:Type Code="196174"> <!-- 2:65.102 -->
 								<pm:ConceptDescription Lang="en-US">dummy static numeric metric</pm:ConceptDescription>
 							</pm:Type>
@@ -93,7 +96,7 @@
 						</pm:Metric>
 						<pm:Metric Handle="Real_time.ch0.vmd0"
 							SafetyClassification="MedA" xsi:type="pm:RealTimeSampleArrayMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1" SamplePeriod="PT5S">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1" SamplePeriod="PT5S" DescriptorVersion="0">
 							<pm:Type Code="196174"> <!-- 2:65.102 -->
 								<pm:ConceptDescription Lang="en-US">Streaming metric</pm:ConceptDescription>
 							</pm:Type>
@@ -105,9 +108,9 @@
 						<pm:Metric Handle="enumstring.ch0.vmd0"
 							SafetyClassification="MedA"
 							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
-							MetricAvailability="Intr">
+							MetricAvailability="Intr" DescriptorVersion="0">
 							<pm:Type Code="196175"> <!-- 2:65.103 -->
-								<pm:ConceptDescription Lang="en-US">dummy static enum string metric</pm:ConceptDescription>
+								<pm:ConceptDescription Ref = "1">dummy static enum string metric</pm:ConceptDescription>
 							</pm:Type>
 							<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
@@ -128,7 +131,7 @@
 
 						<pm:Metric Handle="string.ch0.vmd0"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr">
+							MetricCategory="Set" MetricAvailability="Intr" DescriptorVersion="0">
 							<pm:Type Code="196176"> <!-- 2:65.104 -->
 								<pm:ConceptDescription Lang="en-US">dummy static string metric</pm:ConceptDescription>
 							</pm:Type>
@@ -144,7 +147,7 @@
 						</pm:Type>
 						<pm:Metric Handle="numeric.ch1.vmd0"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Msrmt" MetricAvailability="Cont" Resolution="0.1">
+							MetricCategory="Msrmt" MetricAvailability="Cont" Resolution="0.1" DescriptorVersion="0">
 							<pm:Type Code="196074"> <!-- 2:65.002 -->
 								<pm:ConceptDescription Lang="en-US">dummy dynamic numeric metric</pm:ConceptDescription>
 							</pm:Type>
@@ -158,7 +161,7 @@
 						<pm:Metric Handle="enumstring2.ch0.vmd0"
 							SafetyClassification="MedA"
 							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Clc"
-							MetricAvailability="Cont">
+							MetricAvailability="Cont" DescriptorVersion="0">
 							<pm:Type Code="196075"> <!-- 2:65.003 -->
 								<pm:ConceptDescription Lang="en-US">dummy dynamic enum string metric</pm:ConceptDescription>
 							</pm:Type>
@@ -181,7 +184,7 @@
 
 						<pm:Metric Handle="string2.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
-							MetricCategory="Clc" MetricAvailability="Cont">
+							MetricCategory="Clc" MetricAvailability="Cont" DescriptorVersion="0">
 							<pm:Type Code="196076"> <!-- 2:65.004 -->
 								<pm:ConceptDescription Lang="en-US">dummy static string metric</pm:ConceptDescription>
 							</pm:Type>
@@ -200,7 +203,7 @@
 						<pm:Operation Handle="actop.vmd1_sco_0"
 							xsi:type="pm:ActivateOperationDescriptor"
 							SafetyClassification="MedC" OperationTarget="mds0"
-							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
+							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr" DescriptorVersion="0">
 							<pm:Type Code="196279"> <!-- 2:65.207 -->
 								<pm:ConceptDescription Lang="en-US">dummy activate operation</pm:ConceptDescription>
 							</pm:Type>
@@ -210,7 +213,7 @@
 							xsi:type="pm:SetValueOperationDescriptor"
 							Handle="numeric.ch0.vmd1_sco_0"
 							OperationTarget="numeric.ch0.vmd1" SafetyClassification="MedA"
-							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
+							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr" DescriptorVersion="0">
 							<pm:Type Code="196276"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">set numeric metric value</pm:ConceptDescription>
 							</pm:Type>
@@ -220,7 +223,7 @@
 							xsi:type="pm:SetStringOperationDescriptor"
 							Handle="enumstring.ch0.vmd1_sco_0"
 							OperationTarget="enumstring.ch0.vmd1" SafetyClassification="MedA"
-							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
+							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr" DescriptorVersion="0">
 							<pm:Type Code="196277"> <!-- 2:65.205 -->
 								<pm:ConceptDescription Lang="en-US">set enum string metric value</pm:ConceptDescription>
 							</pm:Type>
@@ -230,7 +233,7 @@
 							xsi:type="pm:SetStringOperationDescriptor"
 							Handle="string.ch0.vmd1_sco_0"
 							OperationTarget="string.ch0.vmd1" SafetyClassification="MedA"
-							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
+							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr" DescriptorVersion="0">
 							<pm:Type Code="196278"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">set string metric value</pm:ConceptDescription>
 							</pm:Type>
@@ -244,7 +247,7 @@
 						</pm:Type>
 						<pm:Metric Handle="numeric.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1" DescriptorVersion="0">
 							<pm:Type Code="196274"> <!-- 2:65.202 -->
 								<pm:ConceptDescription Lang="en-US">dummy settable numeric metric</pm:ConceptDescription>
 							</pm:Type>
@@ -258,7 +261,7 @@
 						<pm:Metric Handle="enumstring.ch0.vmd1"
 							SafetyClassification="MedA"
 							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
-							MetricAvailability="Intr">
+							MetricAvailability="Intr" DescriptorVersion="0">
 							<pm:Type Code="196275"> <!-- 2:65.203 -->
 								<pm:ConceptDescription Lang="en-US">dummy settable enum string metric</pm:ConceptDescription>
 							</pm:Type>
@@ -281,7 +284,7 @@
 
 						<pm:Metric Handle="string.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
-							MetricCategory="Set" MetricAvailability="Intr">
+							MetricCategory="Set" MetricAvailability="Intr" DescriptorVersion="0">
 							<pm:Type Code="196276"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">dummy settable string metric</pm:ConceptDescription>
 							</pm:Type>
@@ -294,18 +297,18 @@
 			</pm:Mds>
 		</pm:MdDescription>
 		<pm:MdState StateVersion="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      		<pm:State ActivationState="On" DescriptorHandle="numeric.ch1.vmd0" StateVersion="0" xsi:type="pm:NumericMetricState">
+      		<pm:State ActivationState="On" DescriptorHandle="numeric.ch1.vmd0" StateVersion="0" DescriptorVersion="0" xsi:type="pm:NumericMetricState">
 				<pm:MetricValue DeterminationTime="0" Value="47">
 					<pm:MetricQuality Validity="Vld"/>
 				</pm:MetricValue>
 			</pm:State>
-			<pm:State ActivationState="On" DescriptorHandle="Real_time.ch0.vmd0" StateVersion="0" xsi:type="pm:RealTimeSampleArrayMetricState">
+			<pm:State ActivationState="On" DescriptorHandle="Real_time.ch0.vmd0" StateVersion="0" DescriptorVersion="0" xsi:type="pm:RealTimeSampleArrayMetricState">
 				<pm:MetricValue DeterminationTime="0" Samples="1 2 3">
 					<pm:MetricQuality Validity="Vld"/>
 				</pm:MetricValue>
 			</pm:State>
 
-			<pm:State DescriptorHandle="string.ch0.vmd1_sco_0" OperatingMode= "En" StateVersion="0" xsi:type="pm:SetStringOperationState">
+			<pm:State DescriptorHandle="string.ch0.vmd1_sco_0" OperatingMode= "En" StateVersion="0" DescriptorVersion="0" xsi:type="pm:SetStringOperationState">
 				<pm:AllowedValues>
 					<pm:Value>ON</pm:Value>
 					<pm:Value>OFF</pm:Value>
