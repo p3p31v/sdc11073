@@ -89,7 +89,7 @@ def create_reference_provider(
     dpws_device = dpws_device or ThisDeviceType(friendly_name='TestDevice',
                                                 firmware_version='Version1',
                                                 serial_number='12345')
-    mdib = ProviderMdib.from_mdib_file(str(mdib_path or pathlib.Path(__file__).parent.joinpath('C:/Users/Jose/Documents/Python_Projekte/sdc11073/examples/ReferenceTest/reference_mdib_original.xml')))
+    mdib = ProviderMdib.from_mdib_file(str(mdib_path or pathlib.Path(__file__).parent.joinpath('reference_mdib.xml')))
     prov = provider.SdcProvider(
         ws_discovery=ws_discovery,
         this_model=dpws_model,
