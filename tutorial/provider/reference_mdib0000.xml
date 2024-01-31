@@ -16,16 +16,35 @@
 	<msg:Mdib SequenceId="urn:oid:1">
 		<pm:MdDescription>
 			<pm:Mds Handle="mds0" SafetyClassification="MedA">
+				<pm:Type Code="130535"> <!-- 1:64.999 -->
+						<pm:ConceptDescription Lang="en-US">MDS</pm:ConceptDescription>
+				</pm:Type>	
+				<pm:Sco Handle="sco.vmd0_">
+					<pm:Operation xsi:type="pm:SetContextStateOperationDescriptor" Handle="ensemble.mds0_sco0" OperationTarget="EN.mds0">
+						<pm:Type Code="1234567">
+							  <pm:ConceptDescription Lang="en-US">An operation to set the ensemble context of this device</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+				</pm:Sco>
+			<pm:SystemContext Handle="SC.mds0">
+				<pm:PatientContext Handle="PC.mds0" />
+				<pm:LocationContext Handle="LC.mds0" />
+				<pm:EnsembleContext Handle="EN.mds0" />
+			</pm:SystemContext>	
 				<pm:Vmd Handle="vmd0" SafetyClassification="MedA">
+					<pm:Type Code="130536"> <!-- 1:65.000 -->
+						<pm:ConceptDescription Lang="en-US">VMD</pm:ConceptDescription>
+					</pm:Type>	
 					<pm:Sco Handle="sco.vmd0">
 						<pm:Operation Handle="actop.mds0_sco_0"
 						xsi:type="pm:ActivateOperationDescriptor"
 						SafetyClassification="MedC" OperationTarget="mds0"
 						MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130535"> <!-- 3:65.500 -->
-								<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
+								<pm:ConceptDescription Lang="en-US">Activation operation</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
+
 					</pm:Sco>
 					<pm:SystemContext Handle="SC.mds0">
 						<pm:PatientContext Handle="PC.mds0" />
@@ -33,12 +52,18 @@
 					</pm:SystemContext>
 					<pm:Channel Handle="ch0.vmd0"
 						SafetyClassification="MedA">
+						<pm:Type Code="130637"> <!-- 1:65.101 -->
+							<pm:ConceptDescription Lang="en-US">static not settable metrics</pm:ConceptDescription>
+						</pm:Type>
 						<pm:Metric Handle="numeric_int_effect.ch0.vmd0"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
 								<pm:Type Code="130536"> <!-- 3:65.500 -->
 									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
 								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
 							<pm:TechnicalRange Upper="255" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
@@ -48,6 +73,9 @@
 								<pm:Type Code="130537"> <!-- 3:65.500 -->
 									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
 								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
 							<pm:TechnicalRange Upper="255" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
@@ -57,9 +85,9 @@
 								<pm:Type Code="130538"> <!-- 3:65.500 -->
 									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
 								</pm:Type>
-							<pm:AllowedValue>
-								<pm:Value>911B1B</pm:Value>
-							</pm:AllowedValue>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
 						</pm:Metric>
 
 						<pm:Metric Handle="enumstring_schalter.ch0.vmd0"
@@ -69,6 +97,9 @@
 								<pm:Type Code="130539"> <!-- 3:65.500 -->
 									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
 								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
 							<pm:AllowedValue>
 								<pm:Value>ON</pm:Value>
 							</pm:AllowedValue>
@@ -83,6 +114,9 @@
 								<pm:Type Code="130540"> <!-- 3:65.500 -->
 									<pm:ConceptDescription Lang="en-US">dummy condition</pm:ConceptDescription>
 								</pm:Type>
+								<pm:Unit Code="262656"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+									<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+								</pm:Unit>
 							<pm:AllowedValue>
 								<pm:Value>0</pm:Value>
 							</pm:AllowedValue>

@@ -4,19 +4,18 @@ import time
 import uuid
 import logging
 from decimal import Decimal
+
 from sdc11073.location import SdcLocation
 from sdc11073.mdib import ProviderMdib
 from sdc11073.provider import SdcProvider
 from sdc11073.provider.components import SdcProviderComponents
 from sdc11073.roles.product import ExtendedProduct
-from sdc11073.wsdiscovery import WSDiscovery
 from sdc11073.wsdiscovery import WSDiscoverySingleAdapter
 from sdc11073.xml_types import pm_qnames as pm
 from sdc11073.xml_types import pm_types
 from sdc11073.xml_types.dpws_types import ThisDeviceType, ThisModelType
 from sdc11073.loghelper import basic_logging_setup
-import requests
-from LED_control import LEDConnectorProviderRole
+from sdc11073.wsdiscovery import WSDiscovery
 
 # example SDC provider (device) that sends out metrics every now and then
 
@@ -52,20 +51,13 @@ def set_local_ensemble_context(mdib: ProviderMdib, ensemble_extension_string: st
 if __name__ == '__main__':
     # start with discovery (MDPWS) that is running on the named adapter "Ethernet" (replace as you need it on your machine, e.g. "enet0" or "Ethernet")
     basic_logging_setup(level=logging.INFO)
+
+    #my_discovery = WSDiscovery(ip_address="10.0.10.4")
     my_discovery = WSDiscoverySingleAdapter("VPN - VPN Client")
-    #my_discovery = WSDiscoverySingleAdapter("Loopback Pseudo-Interface 1")
     # start the discovery
     my_discovery.start()
-    #print("a")
-    #apagado = ['10.249.117.79/win&T=0']
-    #my_discovery.publish_service(x_addrs=apagado, epr=None, scopes=None, types=None)
-    #print("b")
     # create a local mdib that will be sent out on the network, the mdib is based on a XML file
-<<<<<<< HEAD
-    my_mdib = ProviderMdib.from_mdib_file("C:/Users/Jose/Documents/Python_Projekte/sdc11073/tutorial/provider/mdib.xml")
-=======
-    my_mdib = ProviderMdib.from_mdib_file("C:/Users/iccas/Python_Projekte/sdc11073/tutorial/provider/mdib.xml")
->>>>>>> bdd7fc6ccfe343ff00e8f5d23d76bde8b750bb0b
+    my_mdib = ProviderMdib.from_mdib_file("C:/Users/iccas/Python_Projekte/sdc11073/tutorial/provider/mdib_original.xml")
     print("My UUID is {}".format(my_uuid))
     # set a location context to allow easy discovery
     my_location = SdcLocation(fac='HOSP', poc='CU2', bed='BedSim')
@@ -81,9 +73,6 @@ if __name__ == '__main__':
                                 serial_number='12345')
     # create a device (provider) class that will do all the SDC magic
     # set role provider that supports Ensemble Contexts.
-
-    #my_product_impl = LEDConnectorProviderRole()._controlLedOperation('off')
-
     specific_components = SdcProviderComponents(role_provider_class=ExtendedProduct)
     sdc_provider = SdcProvider(ws_discovery=my_discovery,
                                epr=my_uuid,
@@ -102,46 +91,17 @@ if __name__ == '__main__':
     # get all metrics from the mdib (as described in the file)
     all_metric_descrs = [c for c in my_mdib.descriptions.objects if c.NODETYPE == pm.NumericMetricDescriptor]
     # now change all the metrics in one transaction
-    metric_set = my_mdib.descriptions.handle.get_one('numeric.ch0.vmd1')
-    while True:
-        with my_mdib.transaction_manager() as mgr:
-            state = mgr.get_state(metric_set.Handle)
-            if not state.MetricValue:
-                state.mk_metric_value()
-            #state.MetricValue.Value = decimal.Decimal(current_value)
-            print("hola")
-            Effect = state.MetricValue.Value
-            print(state.MetricValue.Value)
-            try:
-                LEDConnectorProviderRole()._LED_Effect_Index(Effect_Index=Effect)
-            except:
-                print("No state defined")
-            print("adios")
-        time.sleep(5)
     with my_mdib.transaction_manager() as mgr:
         for metric_descr in all_metric_descrs:
             # get the metric state of this specific metric
             st = mgr.get_state(metric_descr.Handle)
             # create a value in case it is not there yet
-            print("Hola")
-            print(f"Metric Descriptor Handle: {metric_descr.Handle}")
-            print(f"Activation State: {st.ActivationState}")
-            print(st.ActivationState)
-            print("adios")
-            #st.mk_metric_value()
+            st.mk_metric_value()
             # set the value and some other fields to a fixed value
-            #st.MetricValue.Value = Decimal(1.0)
-           #st.MetricValue.ActiveDeterminationPeriod = 1494554822450
-            #st.MetricValue.Validity = pm_types.MeasurementValidity.VALID
-            #st.ActivationState = pm_types.ComponentActivation.ON
-    #print("Hola")
-    #all_objects = my_mdib.descriptions.objects
-    #numeric_metric_descrs = [c for c in all_objects if c.NODETYPE == pm.NumericMetricDescriptor]
-    #for metric_descr in all_metric_descrs:
-    # get the metric state of this specific metric
-        #metric_des_handle =metric_descr.Handle
-        #print(metric_descr.Handle)
-    #print("adios")
+            st.MetricValue.Value = Decimal(1.0)
+            st.MetricValue.ActiveDeterminationPeriod = 1494554822450
+            st.MetricValue.Validity = pm_types.MeasurementValidity.VALID
+            st.ActivationState = pm_types.ComponentActivation.ON
 
     # now iterate forever and change the value every few seconds
     metric_value = 0
@@ -150,7 +110,5 @@ if __name__ == '__main__':
         with my_mdib.transaction_manager() as mgr:
             for metricDescr in all_metric_descrs:
                 st = mgr.get_state(metricDescr.Handle)
-                #st.MetricValue.Value = Decimal(metric_value)
-                #url = f"http://10.249.117.79/win&T=0"
-                #response = requests.post(url)
-        time.sleep(5)
+                st.MetricValue.Value = Decimal(metric_value)
+        time.sleep(300)

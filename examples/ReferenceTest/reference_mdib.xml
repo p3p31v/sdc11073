@@ -25,6 +25,8 @@
 							SafetyClassification="MedA" Kind="Phy" Priority="Me">
 							<pm:Type Code="130536"> <!-- 3:65.500 -->
 								<pm:ConceptDescription Lang="en-US">Brightness = 255 condition</pm:ConceptDescription>
+							<pm:Type Code="130536"> <!-- 3:65.500 -->
+								<pm:ConceptDescription Lang="en-US">Brightness = 255 condition</pm:ConceptDescription>
 							</pm:Type>
 							<pm:Source>mds0</pm:Source>
 					</pm:AlertCondition>
@@ -37,6 +39,8 @@
 						MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 						<pm:Type Code="130537"> <!-- 2:65.207 -->
 							<pm:ConceptDescription Lang="en-US">Activation</pm:ConceptDescription>
+						<pm:Type Code="130537"> <!-- 2:65.207 -->
+							<pm:ConceptDescription Lang="en-US">Activation</pm:ConceptDescription>
 						</pm:Type>
 					</pm:Operation>
 				</pm:Sco>
@@ -45,8 +49,11 @@
 					<pm:LocationContext Handle="LC.mds0" />
 				</pm:SystemContext>
 				
+				
 
 				<pm:Vmd Handle="vmd1" SafetyClassification="MedA">
+					<pm:Type Code="130538"> <!-- 1:65.200 -->
+						<pm:ConceptDescription Lang="en-US">Vmd</pm:ConceptDescription>
 					<pm:Type Code="130538"> <!-- 1:65.200 -->
 						<pm:ConceptDescription Lang="en-US">Vmd</pm:ConceptDescription>
 					</pm:Type>
@@ -116,6 +123,8 @@
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130545"> <!-- 2:65.205 -->
 								<pm:ConceptDescription Lang="en-US">Set if the interruptor is on or off</pm:ConceptDescription>
+							<pm:Type Code="130545"> <!-- 2:65.205 -->
+								<pm:ConceptDescription Lang="en-US">Set if the interruptor is on or off</pm:ConceptDescription>
 							</pm:Type>
 						</pm:Operation>
 
@@ -147,10 +156,12 @@
 							</pm:Type>
 						</pm:Operation>
 						
+						
 					</pm:Sco>
 					<!-- this is the channel grouping the settable metrics -->
 					<pm:Channel Handle="ch0.vmd1"
 						SafetyClassification="MedA">
+						<pm:Type Code="130549"> <!-- 1:65.201 -->
 						<pm:Type Code="130549"> <!-- 1:65.201 -->
 							<pm:ConceptDescription Lang="en-US">settable metrics</pm:ConceptDescription>
 						</pm:Type>
@@ -198,7 +209,10 @@
 							</pm:Type>
 							<pm:Unit Code="130557"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">Bits</pm:ConceptDescription>
+							<pm:Unit Code="130557"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+								<pm:ConceptDescription Lang="en-US">Bits</pm:ConceptDescription>
 							</pm:Unit>
+							<pm:TechnicalRange Upper="255" Lower="0"
 							<pm:TechnicalRange Upper="255" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
@@ -221,18 +235,23 @@
 							MetricAvailability="Intr">
 							<pm:Type Code="130560"> <!-- 2:65.203 -->
 								<pm:ConceptDescription Lang="en-US">Value of the interruptor state (on or off)</pm:ConceptDescription>
+							<pm:Type Code="130560"> <!-- 2:65.203 -->
+								<pm:ConceptDescription Lang="en-US">Value of the interruptor state (on or off)</pm:ConceptDescription>
 							</pm:Type>
+							<pm:Unit Code="130561"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 							<pm:Unit Code="130561"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
 							</pm:Unit>
 							<pm:AllowedValue>
 								<pm:Value>ON</pm:Value>
 								<pm:Type Code="130562">
+								<pm:Type Code="130562">
 									<pm:ConceptDescription Lang="en-US">ON</pm:ConceptDescription>
 								</pm:Type>
 							</pm:AllowedValue>
 							<pm:AllowedValue>
 								<pm:Value>OFF</pm:Value>
+								<pm:Type Code="130563">
 								<pm:Type Code="130563">
 									<pm:ConceptDescription Lang="en-US">OFF</pm:ConceptDescription>
 								</pm:Type>
@@ -267,7 +286,21 @@
 							</pm:Type>
 							<pm:Unit Code="130569"> <!-- MDC_DIM_DIMLESS = 4:512 -->
 								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
+							<pm:Unit Code="130569"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
+						</pm:Metric>
+						<pm:Metric Handle="numeric_Function_Selector.ch0.vmd1"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
+							<pm:Type Code="130570"> <!-- 2:65.202 -->
+								<pm:ConceptDescription Lang="en-US">Function selector for the LED</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="130571"> <!-- MDC_DIM_DIMLESS = 4:512 -->
+								<pm:ConceptDescription Lang="en-US">Index</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="7" Lower="0"
+								StepWidth="1" />
 						</pm:Metric>
 						<pm:Metric Handle="numeric_Function_Selector.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"

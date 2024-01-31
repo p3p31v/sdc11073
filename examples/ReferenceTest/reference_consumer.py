@@ -14,6 +14,7 @@ from sdc11073.mdib.consumermdib import ConsumerMdib
 from sdc11073.mdib.consumermdibxtra import ConsumerMdibMethods
 from sdc11073.wsdiscovery import WSDiscovery
 from sdc11073.xml_types.msg_types import InvocationState
+from sdc11073.wsdiscovery import WSDiscoverySingleAdapter
 
 ConsumerMdibMethods.DETERMINATIONTIME_WARN_LIMIT = 2.0
 
@@ -29,7 +30,9 @@ def run_ref_test():
     results = []
     print(f'using adapter address {adapter_ip}')
     print('Test step 1: discover device which endpoint ends with "{}"'.format(search_epr))
-    wsd = WSDiscovery(adapter_ip)
+    #wsd = WSDiscovery(adapter_ip)
+    #wsd = WSDiscoverySingleAdapter("VPN - VPN Client")
+    wsd = WSDiscoverySingleAdapter("WLAN")
     wsd.start()
     my_service = None
     while my_service is None:

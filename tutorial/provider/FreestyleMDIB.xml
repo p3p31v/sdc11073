@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<msg:GetMdibResponse
+	xmlns:ext="http://standards.ieee.org/downloads/11073/11073-10207-2017/extension"
+	xmlns:fn="http://www.w3.org/2005/xpath-functions"
+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
+	xmlns:m="http://www.draeger.com/CTEM"
+	xmlns:msg="http://standards.ieee.org/downloads/11073/11073-10207-2017/message"
+	xmlns:pm="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant"
+	xmlns:ps="http://schemas.microsoft.com/powershell/2004/04"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://standards.ieee.org/downloads/11073/11073-10207-2017/participant BICEPS_ParticipantModel.xsd
+        		 http://standards.ieee.org/downloads/11073/11073-10207-2017/message BICEPS_MessageModel.xsd
+        		 http://standards.ieee.org/downloads/11073/11073-10207-2017/extension ExtensionPoint.xsd"
+	SequenceId="urn:oid:1">
+	<msg:Mdib SequenceId="urn:oid:1">
+		<pm:MdDescription>
+			<pm:Mds Handle="AcusonFreestyle" SafetyClassification="MedA">
+				<pm:Type Code="1000"> <!-- 1:64.999 -->
+						<pm:ConceptDescription Lang="en-US">Acuson Freestyle System</pm:ConceptDescription>
+				</pm:Type>
+
+				<!-- HIER SIND DIE ACTIVATIONHANDLE IMPLEMENTIERT -->
+				
+				<pm:Sco Handle="sco.AcusonFreestyle">
+					<pm:Operation Handle="freeze.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500000"> <!-- 2:65.207 -->
+							<pm:ConceptDescription Lang="en-US">Freeze Toogle</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+					<pm:Operation Handle="color.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500001">
+							<pm:ConceptDescription Lang="en-US">Color mode</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+					<pm:Operation Handle="gainup.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500002">
+							<pm:ConceptDescription Lang="en-US">Gain up</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+					<pm:Operation Handle="gaindn.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500003">
+							<pm:ConceptDescription Lang="en-US">Gain down</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+					<pm:Operation Handle="depthup.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500004">
+							<pm:ConceptDescription Lang="en-US">Depth up</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+					<pm:Operation Handle="depthdn.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500005">
+							<pm:ConceptDescription Lang="en-US">Depth Down</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+					<pm:Operation Handle="neargainup.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500006">
+							<pm:ConceptDescription Lang="en-US">Near Gain Up</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>					
+					<pm:Operation Handle="neargaindn.mds0_sco_0"
+						xsi:type="pm:ActivateOperationDescriptor"
+						SafetyClassification="MedC" OperationTarget="AcusonFreestyle"
+						MaxTimeToFinish="PT1S" Retriggerable="true" AccessLevel="Usr">
+						<pm:Type Code="500007">
+							<pm:ConceptDescription Lang="en-US">Near Gain Down</pm:ConceptDescription>
+						</pm:Type>
+					</pm:Operation>
+				</pm:Sco>
+				
+				<!-- System Context: Zeit-->
+				<pm:SystemContext Handle="SC.AcusonFreestyle">
+					<pm:PatientContext Handle="PC.AcusonFreestyle" />
+					<pm:LocationContext Handle="LC.AcusonFreestyle" />
+				</pm:SystemContext>
+				<pm:Clock Handle="CL.AcusonFreestyle">
+					<pm:TimeProtocol Code="532224">
+						<pm:ConceptDescription Lang="en-us">None
+						</pm:ConceptDescription>
+					</pm:TimeProtocol>
+					<pm:TimeProtocol Code="532225">
+						<pm:ConceptDescription Lang="en-us">NTPv4
+						</pm:ConceptDescription>
+					</pm:TimeProtocol>
+					<pm:TimeProtocol Code="532234">
+						<pm:ConceptDescription Lang="en-us">EBWW
+						</pm:ConceptDescription>
+					</pm:TimeProtocol>
+				</pm:Clock>
+				
+				<!-- Virtuell Device 0 -->
+				<pm:Vmd Handle="vmd0" SafetyClassification="MedA">
+					<pm:Type Code="2000">
+						<pm:ConceptDescription Lang="en-US">Virtuell Device 0</pm:ConceptDescription>
+					</pm:Type>
+
+					<!-- In diesem Kanal werden die erhobenen Metriken definiert -->
+					<pm:Channel Handle="ch0.vmd0"
+						SafetyClassification="MedA">
+						<pm:Type Code="130737">
+							<pm:ConceptDescription Lang="en-US">settable metrics</pm:ConceptDescription>
+						</pm:Type>
+						
+						<pm:Metric Handle="depth.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="6001">
+								<pm:ConceptDescription Lang="en-US">depth metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="100" Lower="1"
+								StepWidth="1" />
+						</pm:Metric>
+						
+						<pm:Metric Handle="needlev.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="6010">
+								<pm:ConceptDescription Lang="en-US">needlev metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="100" Lower="1"
+								StepWidth="1" />
+						</pm:Metric>
+						
+						<pm:Metric Handle="gain.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr">
+							<pm:Type Code="6011">
+								<pm:ConceptDescription Lang="en-US">gain metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+						</pm:Metric>
+						
+						<pm:Metric Handle="neargain.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="6012">
+								<pm:ConceptDescription Lang="en-US">neargain metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+						</pm:Metric>
+						
+						<pm:Metric Handle="midgain.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="6013">
+								<pm:ConceptDescription Lang="en-US">midgain metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="100" Lower="1"
+								StepWidth="1" />
+						</pm:Metric>
+						
+						<pm:Metric Handle="fargain.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="6014">
+								<pm:ConceptDescription Lang="en-US">fargain metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="100" Lower="1"
+								StepWidth="1" />
+						</pm:Metric>
+						
+						<pm:Metric Handle="colorgain.ch0.vmd0"
+							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
+							MetricCategory="Set" MetricAvailability="Intr" Resolution="0.1">
+							<pm:Type Code="6015">
+								<pm:ConceptDescription Lang="en-US">colorgain metric</pm:ConceptDescription>
+							</pm:Type>
+							<pm:Unit Code="262656">
+								<pm:ConceptDescription Lang="en-US">no unit</pm:ConceptDescription>
+							</pm:Unit>
+							<pm:TechnicalRange Upper="100" Lower="1"
+								StepWidth="1" />
+						</pm:Metric>
+												
+					</pm:Channel>
+				</pm:Vmd>
+			</pm:Mds>
+		</pm:MdDescription>
+	</msg:Mdib>
+</msg:GetMdibResponse>
