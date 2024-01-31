@@ -50,12 +50,12 @@ def set_local_ensemble_context(mdib: ProviderMdib, ensemble_extension_string: st
 if __name__ == '__main__':
     # start with discovery (MDPWS) that is running on the named adapter "Ethernet" (replace as you need it on your machine, e.g. "enet0" or "Ethernet")
     basic_logging_setup(level=logging.INFO)
-
-    my_discovery = WSDiscoverySingleAdapter("Loopback Pseudo-Interface 1")
+    my_discovery = WSDiscoverySingleAdapter("VPN - VPN Client")
+    #my_discovery = WSDiscoverySingleAdapter("Loopback Pseudo-Interface 1")
     # start the discovery
     my_discovery.start()
     # create a local mdib that will be sent out on the network, the mdib is based on a XML file
-    my_mdib = ProviderMdib.from_mdib_file("mdib.xml")
+    my_mdib = ProviderMdib.from_mdib_file("C:/Users/Jose/Documents/Python_Projekte/sdc11073/tutorial/provider/mdib.xml")
     print("My UUID is {}".format(my_uuid))
     # set a location context to allow easy discovery
     my_location = SdcLocation(fac='HOSP', poc='CU2', bed='BedSim')
@@ -109,4 +109,5 @@ if __name__ == '__main__':
             for metricDescr in all_metric_descrs:
                 st = mgr.get_state(metricDescr.Handle)
                 st.MetricValue.Value = Decimal(metric_value)
+                print(st.MetricValue.Value)
         time.sleep(5)

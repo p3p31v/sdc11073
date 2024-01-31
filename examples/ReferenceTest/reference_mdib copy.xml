@@ -54,8 +54,8 @@
 
 						<pm:Operation
 							xsi:type="pm:SetValueOperationDescriptor"
-							Handle="numeric_1_.ch0.vmd1_sco_0"
-							OperationTarget="numeric_1_.ch0.vmd1" SafetyClassification="MedA"
+							Handle="numeric.ch0.vmd1_sco_0"
+							OperationTarget="numeric.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130539"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set effect index</pm:ConceptDescription>
@@ -64,8 +64,8 @@
 
 						<pm:Operation
 							xsi:type="pm:SetValueOperationDescriptor"
-							Handle="numeric_2_palette.ch0.vmd1_sco_0"
-							OperationTarget="numeric_2_palette.ch0.vmd1" SafetyClassification="MedA"
+							Handle="numeric_palette.ch0.vmd1_sco_0"
+							OperationTarget="numeric_palette.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130540"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set the palette</pm:ConceptDescription>
@@ -73,8 +73,8 @@
 						</pm:Operation>
 						<pm:Operation
 							xsi:type="pm:SetValueOperationDescriptor"
-							Handle="numeric_3_brightness.ch0.vmd1_sco_0"
-							OperationTarget="numeric_3_brightness.ch0.vmd1" SafetyClassification="MedA"
+							Handle="numeric_brightness.ch0.vmd1_sco_0"
+							OperationTarget="numeric_brightness.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130541"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">set brightness value</pm:ConceptDescription>
@@ -82,8 +82,8 @@
 						</pm:Operation>
 						<pm:Operation
 							xsi:type="pm:SetValueOperationDescriptor"
-							Handle="numeric_4_Effect_Speed.ch0.vmd1_sco_0"
-							OperationTarget="numeric_4_Effect_Speed.ch0.vmd1" SafetyClassification="MedA"
+							Handle="numeric_Effect_Speed.ch0.vmd1_sco_0"
+							OperationTarget="numeric_Effect_Speed.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130542"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set the speed value</pm:ConceptDescription>
@@ -91,8 +91,8 @@
 						</pm:Operation>
 						<pm:Operation
 							xsi:type="pm:SetValueOperationDescriptor"
-							Handle="numeric_5_Effect_Intensity.ch0.vmd1_sco_0"
-							OperationTarget="numeric_5_Effect_Intensity.ch0.vmd1" SafetyClassification="MedA"
+							Handle="numeric_Effect_Intensity.ch0.vmd1_sco_0"
+							OperationTarget="numeric_Effect_Intensity.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130543"> <!-- 2:65.204 -->
 								<pm:ConceptDescription Lang="en-US">Set the intensity value value</pm:ConceptDescription>
@@ -111,8 +111,8 @@
 
 						<pm:Operation
 							xsi:type="pm:SetStringOperationDescriptor"
-							Handle="enumstring_1_.ch0.vmd1_sco_0"
-							OperationTarget="enumstring_1_.ch0.vmd1" SafetyClassification="MedA"
+							Handle="enumstring.ch0.vmd1_sco_0"
+							OperationTarget="enumstring.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130545"> <!-- 2:65.205 -->
 								<pm:ConceptDescription Lang="en-US">Set if the interruptor is on or off</pm:ConceptDescription>
@@ -121,8 +121,8 @@
 
 						<pm:Operation
 							xsi:type="pm:SetStringOperationDescriptor"
-							Handle="string_2_.ch0.vmd1_sco_0"
-							OperationTarget="string_2_.ch0.vmd1" SafetyClassification="MedA"
+							Handle="string.ch0.vmd1_sco_0"
+							OperationTarget="string.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130546"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">set primary value</pm:ConceptDescription>
@@ -130,8 +130,8 @@
 						</pm:Operation>
 						<pm:Operation
 							xsi:type="pm:SetStringOperationDescriptor"
-							Handle="string_3_.ch0.vmd1_sco_0"
-							OperationTarget="string_3_.ch0.vmd1" SafetyClassification="MedA"
+							Handle="string_2.ch0.vmd1_sco_0"
+							OperationTarget="string_2.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130547"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">Set secondary color value</pm:ConceptDescription>
@@ -139,8 +139,8 @@
 						</pm:Operation>
 						<pm:Operation
 							xsi:type="pm:SetStringOperationDescriptor"
-							Handle="string_4_.ch0.vmd1_sco_0"
-							OperationTarget="string_4_.ch0.vmd1" SafetyClassification="MedA"
+							Handle="string_3.ch0.vmd1_sco_0"
+							OperationTarget="string_3.ch0.vmd1" SafetyClassification="MedA"
 							MaxTimeToFinish="PT2S" Retriggerable="true" AccessLevel="Usr">
 							<pm:Type Code="130548"> <!-- 2:65.206 -->
 								<pm:ConceptDescription Lang="en-US">Set third color value</pm:ConceptDescription>
@@ -154,7 +154,7 @@
 						<pm:Type Code="130549"> <!-- 1:65.201 -->
 							<pm:ConceptDescription Lang="en-US">settable metrics</pm:ConceptDescription>
 						</pm:Type>
-						<pm:Metric Handle="numeric_1_.ch0.vmd1"
+						<pm:Metric Handle="numeric.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="130550"> <!-- 2:65.202 -->
@@ -166,7 +166,7 @@
 							<pm:TechnicalRange Upper="101" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
-						<pm:Metric Handle="numeric_2_palette.ch0.vmd1"
+						<pm:Metric Handle="numeric_palette.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="130552"> <!-- 2:65.202 -->
@@ -178,7 +178,7 @@
 							<pm:TechnicalRange Upper="46" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
-						<pm:Metric Handle="numeric_3_brightness.ch0.vmd1"
+						<pm:Metric Handle="numeric_brightness.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="130554"> <!-- 2:65.202 -->
@@ -190,7 +190,7 @@
 							<pm:TechnicalRange Upper="255" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
-						<pm:Metric Handle="numeric_4_Effect_Speed.ch0.vmd1"
+						<pm:Metric Handle="numeric_Effect_Speed.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="130556"> <!-- 2:65.202 -->
@@ -203,7 +203,7 @@
 								StepWidth="1" />
 						</pm:Metric>
 
-						<pm:Metric Handle="numeric_5_Effect_Intensity.ch0.vmd1"
+						<pm:Metric Handle="numeric_Effect_Intensity.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:NumericMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr" Resolution="1">
 							<pm:Type Code="130558"> <!-- 2:65.202 -->
@@ -215,7 +215,7 @@
 							<pm:TechnicalRange Upper="255" Lower="0"
 								StepWidth="1" />
 						</pm:Metric>
-						<pm:Metric Handle="enumstring_1_.ch0.vmd1"
+						<pm:Metric Handle="enumstring.ch0.vmd1"
 							SafetyClassification="MedA"
 							xsi:type="pm:EnumStringMetricDescriptor" MetricCategory="Set"
 							MetricAvailability="Intr">
@@ -239,7 +239,7 @@
 							</pm:AllowedValue>
 						</pm:Metric>
 
-						<pm:Metric Handle="string_2_.ch0.vmd1"
+						<pm:Metric Handle="string.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr">
 							<pm:Type Code="130564"> <!-- 2:65.204 -->
@@ -249,7 +249,7 @@
 								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
 						</pm:Metric>
-						<pm:Metric Handle="string_3_.ch0.vmd1"
+						<pm:Metric Handle="string_2.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr">
 							<pm:Type Code="130566"> <!-- 2:65.204 -->
@@ -259,7 +259,7 @@
 								<pm:ConceptDescription Lang="en-US">HEX/DEC</pm:ConceptDescription>
 							</pm:Unit>
 						</pm:Metric>
-						<pm:Metric Handle="string_4_.ch0.vmd1"
+						<pm:Metric Handle="string_3.ch0.vmd1"
 							SafetyClassification="MedA" xsi:type="pm:StringMetricDescriptor"
 							MetricCategory="Set" MetricAvailability="Intr">
 							<pm:Type Code="130568"> <!-- 2:65.204 -->
